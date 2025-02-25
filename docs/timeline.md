@@ -10,7 +10,7 @@ gantt
     dateFormat  YYYY-MM-DD
 
     section Hardware Integration
-    TurtleBot 4 Hardware Integration               :active, task2_1, 2025-02-26, 2025-03-10
+    TurtleBot 4 Hardware Integration               :task2_1, 2025-02-26, 2025-03-10
     UR5 Hardware Integration                       :task2_2, 2025-03-03, 2025-03-10
     Sensor Installation and Configuration          :task2_3, 2025-03-10, 2025-03-17
 
