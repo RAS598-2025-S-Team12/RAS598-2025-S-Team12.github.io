@@ -1,5 +1,5 @@
 ---
-title: Project Timeline
+title: Gantt Chart
 ---
 
 
