@@ -237,57 +237,6 @@
   
   
     <li class="md-tabs__item">
-      <a href="esp-32-table/" class="md-tabs__link">
-        
-  
-    
-  
-  ESP32 Table
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="pic-table/" class="md-tabs__link">
-        
-  
-    
-  
-  PIC Table
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="second-page/" class="md-tabs__link">
-        
-  
-    
-  
-  Second Page
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
       <a href="timeline/" class="md-tabs__link">
         
   
@@ -313,26 +262,6 @@
     
   
   Component selection example
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="subfolder/" class="md-tabs__link">
-          
-  
-    
-  
-  Subfolder
 
         </a>
       </li>
@@ -682,63 +611,6 @@
   
   
     <li class="md-nav__item">
-      <a href="esp-32-table/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ESP32 Table
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="pic-table/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PIC Table
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="second-page/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Second Page
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
       <a href="timeline/" class="md-nav__link">
         
   
@@ -779,49 +651,6 @@
   
   <span class="md-ellipsis">
     Component selection example
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="subfolder/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Subfolder
   </span>
   
 
@@ -1138,6 +967,7 @@
 <h4 id="gazebo-simulation">Gazebo Simulation:</h4>
 <p>We will use Gazebo to simulate and validate robot behaviors, test all kinds of scenarios virtually before real-world deployment, and ensure system stability.</p>
 <h3 id="iv-control-and-autonomy">iv. Control and Autonomy</h3>
+<p>The processed sensor data enables real-time responses such as collision avoidance, stability adjustments, and immediate path corrections. For instance, the LiDAR data helps detect unexpected obstacles, while the IMU provides vital motion and balance information. At the higher level, the controller uses the refined sensor data to update path planning, ensuring the Turtlebot navigates efficiently and delivers cargo to the correct station based on marker recognition.</p>
 <h3 id="v-preparation-needs">v. Preparation needs</h3>
 <p>To build the system, we need to understand how communication between UR5 and TurtleBot 4 works. Choosing the most suitable path-planning algorithm, such as Dijkstra, A*, or a more optimized alternative, is crucial for efficient TurtleBot 4 navigation and minimizing delivery time. Lastly, integrating useful Python packages like OpenCV for object detection will enhance the system's capabilities.</p>
 <h3 id="vi-final-demonstrartion">vi. Final Demonstrartion</h3>
