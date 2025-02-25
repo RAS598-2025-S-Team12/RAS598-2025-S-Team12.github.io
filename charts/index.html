@@ -599,7 +599,8 @@
 
   <h1>Charts</h1>
 
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>
+graph TD
     Start[System Start] --&gt; UR5_Pickup[UR5 randomly picks up object]
     UR5_Pickup --&gt; Wait_Turtlebot[Wait for Turtlebot arrival]
 
@@ -607,21 +608,22 @@
     Wait_Turtlebot --&gt;|Turtlebot not arrived| Wait_Turtlebot
 
     Place_Object --&gt; UR5_Reset[UR5 returns to standby position]
-    UR5_Reset --&gt; Wait_Next_Command[UR5 waits for next command]
+    UR5_Reset --&gt; Wait_Turtlebot
 
     Place_Object --&gt; Turtlebot_Identify[Turtlebot identifies Aruco marker on object]
-    Turtlebot_Identify --&gt; Path_Planning[Turtlebot plans path to station based on Aruco marker]
-    Path_Planning --&gt; Navigate_station[Turtlebot navigates to station]
+    Turtlebot_Identify --&gt; Path_Planning[Turtlebot plans path to workstation based on Aruco marker]
+    Path_Planning --&gt; Navigate_Workstation[Turtlebot navigates to workstation]
 
-    Navigate_station --&gt; Arrive_Workstation[Arrives at workstation]
-    Arrive_station --&gt; Turtlebot_Arm_Pickup[Turtlebot's arm picks up object]
-    Turtlebot_Arm_Pickup --&gt; Place_station[Object placed onto station]
+    Navigate_Workstation --&gt; Arrive_Workstation[Arrives at workstation]
+    Arrive_Workstation --&gt; Turtlebot_Arm_Pickup[Turtlebot's arm picks up object]
+    Turtlebot_Arm_Pickup --&gt; Place_Workstation[Object placed onto workstation]
 
-    Place_station --&gt; Turtlebot_Return[Turtlebot returns to predefined location]
+    Place_Workstation --&gt; Turtlebot_Return[Turtlebot returns to predefined location]
     Turtlebot_Return --&gt; Wait_For_Object[Turtlebot waits for next object]
 
     Wait_For_Object --&gt;|Next object ready| Wait_Turtlebot
-    Wait_Turtlebot --&gt;|Process completed| End[Process End]</code></pre>
+    Wait_Turtlebot --&gt;|Process completed| End[Process End]
+</code></pre>
 
 
 
