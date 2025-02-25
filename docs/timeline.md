@@ -23,7 +23,7 @@ gantt
     Sensor Data Fusion                              :task4_2, 2025-03-24, 2025-04-07
 
     section Control and Autonomy 
-    Basic Control of UR5 Robotic Arm               :task5_1, 2025-03-03, 2025-03-13
+    Basic Control of UR5 Robotic Arm               :task5_1, 2025-03-03, 2025-03-15
     Navigation Development for Turtlebot                 :task5_2, 2025-04-07, 2025-04-21
     Path-Planning Algorithms Development                 :task5_3, 2025-04-07, 2025-04-21
 
