@@ -34,10 +34,10 @@ tags:
 > The LiDAR will be used to collect a 3D point cloud and convert it into a map. During testing, we ensure that the LiDAR accurately maps the environment and effectively avoids obstacles by comparing real-time data with the generated map. The IMU is evaluated to confirm that it precisely measures movement and maintains stability, which is vital for the robot's mobility. Additionally, the camera’s ability to recognize ArUco markers under various conditions will be tested, addressing potential issues like lighting changes or occlusion. In the final demonstration, the LiDAR will be fully integrated to enable smooth navigation, ensuring that the Turtlebot moves efficiently without collisions. The IMU will be used to maintain the Turtlebot's balance and ensure stable movement during delivery tasks, and the camera will reliably identify markers to direct the Turtlebot to the correct station for each cargo.
 
 ### iii. Interaction
-> -RViz Interface:
-  We will use RViz to visualize robot states, sensor data, task progress, and debugging information in real-time.
-> -Gazebo Simulation:
-  We will use Gazebo to simulate and validate robot behaviors, test all kinds of scenarios virtually before real-world deployment, and ensure system stability.
+#### RViz Interface:
+> We will use RViz to visualize robot states, sensor data, task progress, and debugging information in real-time.
+#### Gazebo Simulation:
+> We will use Gazebo to simulate and validate robot behaviors, test all kinds of scenarios virtually before real-world deployment, and ensure system stability.
 
 ### iv. Control and Autonomy
 
@@ -46,12 +46,14 @@ tags:
 
 ### vi. Final Demonstrartion
 1. What resources will you need?
+
 > - The reference project on internet like similar projects in Github and any materials given by Prof.Aukes.
   - UR5 robotic arm and turtlebot robot
   - Sensor like IMU, LIDAR, encoders, etc.
   - High-performance computer
   
 2. Describe the classroom setup requirements. 
+
 > - UR5 robot arm
   - A few small boxes
   - Several boards make up the obstacle course. 
