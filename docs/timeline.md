@@ -24,8 +24,8 @@ gantt
 
     section Control and Autonomy 
     Basic Control of UR5 Robotic Arm                    :task5_1, 2025-03-03, 2025-03-15
-    Navigation Development for Turtlebot                :task5_2, 2025-03-31, 2025-04-14
-    Path-Planning Algorithms Development                :task5_3, 2025-03-31, 2025-04-14
+    Navigation Development for Turtlebot                :task5_2, 2025-03-31, 2025-04-17
+    Path-Planning Algorithms Development                :task5_3, 2025-03-31, 2025-04-17
     
 
     section Testing and Optimization
