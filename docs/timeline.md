@@ -15,8 +15,8 @@ gantt
     Sensor Installation          :task2_3, 2025-03-10, 2025-03-17
 
     section Interface Development and Integration
-    User Interface Development:task3_1, 2025-03-17, 2025-03-30
-    Sensor and Robot Interface Integration          :task3_2, 2025-03-17, 2025-03-30
+    User Interface Development:task3_1, 2025-03-10, 2025-03-30
+    Sensor and Robot Interface Integration :task3_2, 2025-03-17, 2025-03-30
 
     section Sensor Data Processing and Fusion
     Sensor Data Collection and Processing           :task4_1, 2025-03-24, 2025-04-07
@@ -25,7 +25,7 @@ gantt
     section Control and Autonomy 
     Basic Control of UR5 Robotic Arm                    :task5_1, 2025-03-03, 2025-03-15
     Navigation Development for Turtlebot                :task5_2, 2025-03-31, 2025-04-14
-    Path-Planning Algorithms Development                :task5_3, 2025-04-31, 2025-04-14
+    Path-Planning Algorithms Development                :task5_3, 2025-03-31, 2025-04-14
     
 
     section Testing and Optimization
