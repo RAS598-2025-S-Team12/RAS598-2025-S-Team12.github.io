@@ -1,5 +1,5 @@
 ---
-title: Automatic delivery turtlebot Systems
+title: Home
 tags:
 - tag1
 - tag2
@@ -68,4 +68,3 @@ This project will enhance our understanding of multi-robot communication by coor
 ### viii. Advising
 Dr. Aukes serves as our advisor for this project, providing technical guidance and hardware support. With his expertise in ROS2 development, robotic motion planning, and control systems, he plays a crucial role in helping us navigate the technical challenges of integrating the UR5 robotic arm and Turtlebot. Additionally, we plan to seek further technical guidance from other experts in the field to ensure the success of our project.
 
-## III. Gantt Chart
