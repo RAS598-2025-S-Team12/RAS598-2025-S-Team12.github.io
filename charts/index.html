@@ -599,33 +599,29 @@
 
   <h1>Charts</h1>
 
-<pre class="mermaid"><code>graph LR
-  A[Start] --&gt; B{Error?};
-  B --&gt;|Yes| C[Hmm...];
-  C --&gt; D[Debug];
-  D --&gt; B;
-  B ----&gt;|No| E[Yay!];</code></pre>
-<pre class="mermaid"><code>sequenceDiagram
-  autonumber
-  Alice-&gt;&gt;John: Hello John, how are you?
-  loop Healthcheck
-      John-&gt;&gt;John: Fight against hypochondria
-  end
-  Note right of John: Rational thoughts!
-  John--&gt;&gt;Alice: Great!
-  John-&gt;&gt;Bob: How about you?
-  Bob--&gt;&gt;John: Jolly good!</code></pre>
-<pre class="mermaid"><code>stateDiagram-v2
-  state fork_state &lt;&lt;fork&gt;&gt;
-    [*] --&gt; fork_state
-    fork_state --&gt; State2
-    fork_state --&gt; State3
+<pre class="mermaid"><code>graph TD
+    Start[System Start] --&gt; UR5_Pickup[UR5 randomly picks up object]
+    UR5_Pickup --&gt; Wait_Turtlebot[Wait for Turtlebot arrival]
 
-    state join_state &lt;&lt;join&gt;&gt;
-    State2 --&gt; join_state
-    State3 --&gt; join_state
-    join_state --&gt; State4
-    State4 --&gt; [*]</code></pre>
+    Wait_Turtlebot --&gt;|Turtlebot arrived| Place_Object[Place object on Turtlebot platform]
+    Wait_Turtlebot --&gt;|Turtlebot not arrived| Wait_Turtlebot
+
+    Place_Object --&gt; UR5_Reset[UR5 returns to standby position]
+    UR5_Reset --&gt; Wait_Next_Command[UR5 waits for next command]
+
+    Place_Object --&gt; Turtlebot_Identify[Turtlebot identifies Aruco marker on object]
+    Turtlebot_Identify --&gt; Path_Planning[Turtlebot plans path to workstation based on Aruco marker]
+    Path_Planning --&gt; Navigate_Workstation[Turtlebot navigates to workstation]
+
+    Navigate_Workstation --&gt; Arrive_Workstation[Arrives at workstation]
+    Arrive_Workstation --&gt; Turtlebot_Arm_Pickup[Turtlebot's arm picks up object]
+    Turtlebot_Arm_Pickup --&gt; Place_Workstation[Object placed onto workstation]
+
+    Place_Workstation --&gt; Turtlebot_Return[Turtlebot returns to predefined location]
+    Turtlebot_Return --&gt; Wait_For_Object[Turtlebot waits for next object]
+
+    Wait_For_Object --&gt;|Next object ready| Wait_Turtlebot
+    Wait_Turtlebot --&gt;|Process completed| End[Process End]</code></pre>
 
 
 
