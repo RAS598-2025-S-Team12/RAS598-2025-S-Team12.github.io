@@ -33,8 +33,6 @@ gantt
     System Integration Testing                     :task6_1, 2025-05-12, 2025-05-18
     Performance Optimization and Debugging         :task6_2, 2025-05-19, 2025-05-25
 
-    section Deployment
-    System Deployment and Verification             :task7_1, 2025-05-26, 2025-06-01
 
 
 ```
