@@ -610,14 +610,14 @@
     UR5_Reset --&gt; Wait_Next_Command[UR5 waits for next command]
 
     Place_Object --&gt; Turtlebot_Identify[Turtlebot identifies Aruco marker on object]
-    Turtlebot_Identify --&gt; Path_Planning[Turtlebot plans path to workstation based on Aruco marker]
-    Path_Planning --&gt; Navigate_Workstation[Turtlebot navigates to workstation]
+    Turtlebot_Identify --&gt; Path_Planning[Turtlebot plans path to station based on Aruco marker]
+    Path_Planning --&gt; Navigate_station[Turtlebot navigates to station]
 
-    Navigate_Workstation --&gt; Arrive_Workstation[Arrives at workstation]
-    Arrive_Workstation --&gt; Turtlebot_Arm_Pickup[Turtlebot's arm picks up object]
-    Turtlebot_Arm_Pickup --&gt; Place_Workstation[Object placed onto workstation]
+    Navigate_station --&gt; Arrive_Workstation[Arrives at workstation]
+    Arrive_station --&gt; Turtlebot_Arm_Pickup[Turtlebot's arm picks up object]
+    Turtlebot_Arm_Pickup --&gt; Place_station[Object placed onto station]
 
-    Place_Workstation --&gt; Turtlebot_Return[Turtlebot returns to predefined location]
+    Place_station --&gt; Turtlebot_Return[Turtlebot returns to predefined location]
     Turtlebot_Return --&gt; Wait_For_Object[Turtlebot waits for next object]
 
     Wait_For_Object --&gt;|Next object ready| Wait_Turtlebot
