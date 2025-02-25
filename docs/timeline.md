@@ -8,13 +8,11 @@ title: Gantt Chart
 gantt
     title Project Plan Gantt Chart
     dateFormat  YYYY-MM-DD
-    section Project Planning and Preparation
-    Literature Research and Technology Selection   :done, task1_2, 2025-02-24, 2025-03-02
 
     section Hardware Integration and Development
-    UR5 Robotic Arm Hardware Integration           :active, task2_1, 2025-03-03, 2025-03-16
-    Turtlebot Mobile Base Hardware Integration     :task2_2, 2025-03-10, 2025-03-23
-    Sensor Installation and Configuration          :task2_3, 2025-03-17, 2025-03-30
+    UR5 Robotic Arm Hardware Integration           :active, task2_1, 2025-02-26, 2025-03-05
+    Turtlebot Mobile Base Hardware Integration     :task2_2, 2025-03-03, 2025-03-17
+    Sensor Installation and Configuration          :task2_3, 2025-03-10, 2025-03-23
 
     section Interface Development and Integration
     Interface Development Between UR5 and Turtlebot :task3_1, 2025-03-24, 2025-03-06
