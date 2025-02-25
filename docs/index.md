@@ -1,14 +1,19 @@
 ---
-title: Welcome
+title: Automatic delivery turtlebot
 tags:
 - tag1
 - tag2
 ---
 
-## Hi, testing
+## Team Project
 
-* List1
-* List2
+* Project name: Automatic delivery turtlebot
+* Team number: 12
+* Team members: Sandy Lin, Alan Cheng, Yibo Yuan
+* Year: 2025 Spring
+* University: Arizona State University
+* Class: RAS598 Experimentation and Deployment of Robotic Systems
+* Instructor: Daniel M. Aukes
 
 ### test2
 
