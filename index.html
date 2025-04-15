@@ -1009,6 +1009,23 @@ We successfully implemented control over the UR5 robotic arm, enabling it to per
 Added an "Origin" button based on the previously developed GUI. After initiating the system with the "Start" button, pressing "Origin" commands the Turtlebot to move to the designated position and wait to receive colored blocks.</p>
 </li>
 <li>
+<p>Predefined Actions:
+We successfully enabled the TurtleBot to execute predefined actions. When button A is pressed, it moves forward 3 meters and then turns left for 1 meter; when button B is pressed, it moves forward 3 meters and then turns right for 1 meter.</p>
+</li>
+</ol>
+<div align="center">
+
+<iframe width="560" height="315"
+        src="https://youtu.be/AvNOWas0qkQ"
+        title="UR5 Robotic Arm Demo" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+</iframe>
+
+</div>
+
+<ol>
+<li>
 <p>Path Planning Algorithm Implementation:
 Created an initial version of path planning within ttb_nav.py, incorporating obstacle detection and avoidance using ROS2's Nav2 framework.</p>
 </li>
