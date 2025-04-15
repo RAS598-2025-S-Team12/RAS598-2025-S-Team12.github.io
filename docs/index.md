@@ -73,15 +73,23 @@ Dr. Aukes serves as our advisor for this project, providing technical guidance a
 #### Current Achievements:
 1. UR5 Robotic Arm Control:
 Successfully implemented control over the UR5 robotic arm, enabling it to perform pick-and-place tasks from point A to point B. Shown in the YouTube link below.
-https://youtu.be/wdnD8_uXcG0 
+https://youtu.be/wdnD8_uXcG0
 
-2. GUI Enhancement:
+<iframe width="560" height="315"
+        src="https://www.youtube.com/embed/wdnD8_uXcG0"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+</iframe>
+
+
+3. GUI Enhancement:
 Added an "Origin" button based on the previously developed GUI. After initiating the system with the "Start" button, pressing "Origin" commands the Turtlebot to move to the designated position and wait to receive colored blocks.
 
-3. Path Planning Algorithm Implementation:
+4. Path Planning Algorithm Implementation:
 Created an initial version of path planning within ttb_nav.py, incorporating obstacle detection and avoidance using ROS2's Nav2 framework.
 
-4. Color Detection and Topic Publishing:
+5. Color Detection and Topic Publishing:
 Integrated color detection logic in block_detector.py. Once the dominant color of a block is identified, it is published to the turtlebot_14/block_info topic. The Turtlebot subscribes to this topic to determine which workstation to navigate to based on the block color.
 
 #### Upcoming Tasks:
