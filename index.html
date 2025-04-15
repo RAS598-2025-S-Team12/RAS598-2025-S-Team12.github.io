@@ -472,13 +472,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#gazebo-simulation" class="md-nav__link">
-    Gazebo Simulation:
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -564,6 +557,20 @@
           <li class="md-nav__item">
   <a href="#current-achievements" class="md-nav__link">
     Current Achievements:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gui-interface" class="md-nav__link">
+    GUI Interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rqt-graph-visualization" class="md-nav__link">
+    RQT Graph Visualization
   </a>
   
 </li>
@@ -780,13 +787,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#gazebo-simulation" class="md-nav__link">
-    Gazebo Simulation:
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -877,6 +877,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#gui-interface" class="md-nav__link">
+    GUI Interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rqt-graph-visualization" class="md-nav__link">
+    RQT Graph Visualization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#upcoming-tasks" class="md-nav__link">
     Upcoming Tasks:
   </a>
@@ -957,8 +971,6 @@
 <h3 id="iii-interaction">iii. Interaction</h3>
 <h4 id="rviz-interface">RViz Interface:</h4>
 <p>We will use RViz to visualize robot states, sensor data, task progress, and debugging information in real-time.</p>
-<h4 id="gazebo-simulation">Gazebo Simulation:</h4>
-<p>We will use Gazebo to simulate and validate robot behaviors, test all kinds of scenarios virtually before real-world deployment, and ensure system stability.</p>
 <h3 id="iv-control-and-autonomy">iv. Control and Autonomy</h3>
 <p>The processed sensor data enables real-time responses such as collision avoidance, stability adjustments, and immediate path corrections. For instance, the LiDAR data helps detect unexpected obstacles, while the IMU provides vital motion and balance information. At the higher level, the controller uses the refined sensor data to update path planning, ensuring the Turtlebot navigates efficiently and delivers cargo to the correct station based on marker recognition.</p>
 <h3 id="v-preparation-needs">v. Preparation needs</h3>
@@ -1004,23 +1016,32 @@ We successfully implemented control over the UR5 robotic arm, enabling it to per
 </div>
 
 <ol>
-<li>
-<p>GUI Enhancement:
-Added an "Origin" button based on the previously developed GUI. After initiating the system with the "Start" button, pressing "Origin" commands the Turtlebot to move to the designated position and wait to receive colored blocks.</p>
-</li>
-<li>
-<p>Predefined Actions:
-We successfully enabled the TurtleBot to execute predefined actions. When button A is pressed, it moves forward 3 meters and then turns left for 1 meter; when button B is pressed, it moves forward 3 meters and then turns right for 1 meter.</p>
-</li>
+<li>GUI Enhancement:
+Added an "Origin" button based on the previously developed GUI. After initiating the system with the "Start" button, pressing "Origin" commands the Turtlebot to move to the designated position and wait to receive colored blocks.</li>
+</ol>
+<h4 id="gui-interface">GUI Interface</h4>
+<div align="center">
+  <a class="glightbox" href="./images/GUI.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./images/GUI.jpg" alt="GUI Interface" width="600"></a>
+</div>
+
+<hr />
+<h4 id="rqt-graph-visualization">RQT Graph Visualization</h4>
+<div align="center">
+  <a class="glightbox" href="./images/rqt_graph.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./images/rqt_graph.jpg" alt="rqt_graph" width="600"></a>
+</div>
+
+<ol>
+<li>Predefined Actions:
+We successfully enabled the TurtleBot to execute predefined actions. When button A is pressed, it moves forward 3 meters and then turns left for 1 meter; when button B is pressed, it moves forward 3 meters and then turns right for 1 meter.</li>
 </ol>
 <div align="center">
 
-<iframe width="560" height="315"
-        src="https://youtu.be/AvNOWas0qkQ"
-        title="UR5 Robotic Arm Demo" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-</iframe>
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/AvNOWas0qkQ"
+            title="YouTube video demo" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+    </iframe>
 
 </div>
 
