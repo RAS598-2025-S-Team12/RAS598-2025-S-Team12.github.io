@@ -69,3 +69,31 @@ This project will enhance our understanding of multi-robot communication by coor
 ### viii. Advising
 Dr. Aukes serves as our advisor for this project, providing technical guidance and hardware support. With his expertise in ROS2 development, robotic motion planning, and control systems, he plays a crucial role in helping us navigate the technical challenges of integrating the UR5 robotic arm and Turtlebot. Additionally, we plan to seek further technical guidance from other experts in the field to ensure the success of our project.
 
+### iv. Project Progress & Future Tasks
+#### Current Achievements:
+1. UR5 Robotic Arm Control:
+Successfully implemented control over the UR5 robotic arm, enabling it to perform pick-and-place tasks from point A to point B. Shown in the YouTube link below.
+
+
+2. GUI Enhancement:
+Added an "Origin" button based on the previously developed GUI. After initiating the system with the "Start" button, pressing "Origin" commands the Turtlebot to move to the designated position and wait to receive colored blocks.
+
+3. Path Planning Algorithm Implementation:
+Created an initial version of path planning within ttb_nav.py, incorporating obstacle detection and avoidance using ROS2's Nav2 framework.
+
+4. Color Detection and Topic Publishing:
+Integrated color detection logic in block_detector.py. Once the dominant color of a block is identified, it is published to the turtlebot_14/block_info topic. The Turtlebot subscribes to this topic to determine which workstation to navigate to based on the block color.
+
+#### Upcoming Tasks:
+1. Continuous Task Flow Logic:
+Develop a controller that enables continuous round-trip operations between the UR5, the color detection positions, and the drop-off block position.
+
+2. Path Planning Optimization:
+Optimize the current path planning logic with more advanced algorithms such as A* or Dijkstra to enhance navigation efficiency and stability.
+
+3. RViz Integration:
+Add RViz visualization to support real-time monitoring and build a digital twin for the delivery system.
+
+4. System Integration and Validation
+
+
