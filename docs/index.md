@@ -35,8 +35,6 @@ The LiDAR will be used to collect a 3D point cloud and convert it into a map. Du
 ### iii. Interaction
 #### RViz Interface:
 We will use RViz to visualize robot states, sensor data, task progress, and debugging information in real-time.
-#### Gazebo Simulation:
-We will use Gazebo to simulate and validate robot behaviors, test all kinds of scenarios virtually before real-world deployment, and ensure system stability.
 
 ### iv. Control and Autonomy
 The processed sensor data enables real-time responses such as collision avoidance, stability adjustments, and immediate path corrections. For instance, the LiDAR data helps detect unexpected obstacles, while the IMU provides vital motion and balance information. At the higher level, the controller uses the refined sensor data to update path planning, ensuring the Turtlebot navigates efficiently and delivers cargo to the correct station based on marker recognition.
@@ -90,17 +88,32 @@ We successfully implemented control over the UR5 robotic arm, enabling it to per
 2. GUI Enhancement:
 Added an "Origin" button based on the previously developed GUI. After initiating the system with the "Start" button, pressing "Origin" commands the Turtlebot to move to the designated position and wait to receive colored blocks.
 
+#### GUI Interface
+
+<div align="center">
+  <img src="./images/GUI.jpg" alt="GUI Interface" width="600">
+</div>
+
+---
+
+#### RQT Graph Visualization
+
+<div align="center">
+  <img src="./images/rqt_graph.jpg" alt="rqt_graph" width="600">
+</div>
+
+
 3. Predefined Actions:
 We successfully enabled the TurtleBot to execute predefined actions. When button A is pressed, it moves forward 3 meters and then turns left for 1 meter; when button B is pressed, it moves forward 3 meters and then turns right for 1 meter.
 
 <div align="center">
 
-<iframe width="560" height="315"
-        src="https://youtu.be/AvNOWas0qkQ"
-        title="UR5 Robotic Arm Demo" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-</iframe>
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/AvNOWas0qkQ"
+            title="YouTube video demo" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+    </iframe>
 
 </div>
 
