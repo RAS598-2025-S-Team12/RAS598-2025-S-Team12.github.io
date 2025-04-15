@@ -553,6 +553,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#iv-project-progress-future-tasks" class="md-nav__link">
+    iv. Project Progress &amp; Future Tasks
+  </a>
+  
+    <nav class="md-nav" aria-label="iv. Project Progress & Future Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-achievements" class="md-nav__link">
+    Current Achievements:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upcoming-tasks" class="md-nav__link">
+    Upcoming Tasks:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -834,6 +861,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#iv-project-progress-future-tasks" class="md-nav__link">
+    iv. Project Progress &amp; Future Tasks
+  </a>
+  
+    <nav class="md-nav" aria-label="iv. Project Progress & Future Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-achievements" class="md-nav__link">
+    Current Achievements:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upcoming-tasks" class="md-nav__link">
+    Upcoming Tasks:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -932,6 +986,44 @@
 <p>This project will enhance our understanding of multi-robot communication by coordinating the UR5 robotic arm and TurtleBot 4. Building a Gazebo simulation will help us test and refine the system, while RViz will provide real-time visualization and debugging. Developing our own user interface will improve interaction and control. Lastly, exploring different path-planning algorithms will deepen our knowledge of autonomous navigation.</p>
 <h3 id="viii-advising">viii. Advising</h3>
 <p>Dr. Aukes serves as our advisor for this project, providing technical guidance and hardware support. With his expertise in ROS2 development, robotic motion planning, and control systems, he plays a crucial role in helping us navigate the technical challenges of integrating the UR5 robotic arm and Turtlebot. Additionally, we plan to seek further technical guidance from other experts in the field to ensure the success of our project.</p>
+<h3 id="iv-project-progress-future-tasks">iv. Project Progress &amp; Future Tasks</h3>
+<h4 id="current-achievements">Current Achievements:</h4>
+<ol>
+<li>
+<p>UR5 Robotic Arm Control:
+Successfully implemented control over the UR5 robotic arm, enabling it to perform pick-and-place tasks from point A to point B. Shown in the YouTube link below.</p>
+</li>
+<li>
+<p>GUI Enhancement:
+Added an "Origin" button based on the previously developed GUI. After initiating the system with the "Start" button, pressing "Origin" commands the Turtlebot to move to the designated position and wait to receive colored blocks.</p>
+</li>
+<li>
+<p>Path Planning Algorithm Implementation:
+Created an initial version of path planning within ttb_nav.py, incorporating obstacle detection and avoidance using ROS2's Nav2 framework.</p>
+</li>
+<li>
+<p>Color Detection and Topic Publishing:
+Integrated color detection logic in block_detector.py. Once the dominant color of a block is identified, it is published to the turtlebot_14/block_info topic. The Turtlebot subscribes to this topic to determine which workstation to navigate to based on the block color.</p>
+</li>
+</ol>
+<h4 id="upcoming-tasks">Upcoming Tasks:</h4>
+<ol>
+<li>
+<p>Continuous Task Flow Logic:
+Develop a controller that enables continuous round-trip operations between the UR5, the color detection positions, and the drop-off block position.</p>
+</li>
+<li>
+<p>Path Planning Optimization:
+Optimize the current path planning logic with more advanced algorithms such as A* or Dijkstra to enhance navigation efficiency and stability.</p>
+</li>
+<li>
+<p>RViz Integration:
+Add RViz visualization to support real-time monitoring and build a digital twin for the delivery system.</p>
+</li>
+<li>
+<p>System Integration and Validation</p>
+</li>
+</ol>
 
 
 
