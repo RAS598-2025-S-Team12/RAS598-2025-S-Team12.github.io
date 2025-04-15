@@ -73,7 +73,7 @@ Dr. Aukes serves as our advisor for this project, providing technical guidance a
 #### Current Achievements:
 1. UR5 Robotic Arm Control:
 Successfully implemented control over the UR5 robotic arm, enabling it to perform pick-and-place tasks from point A to point B. Shown in the YouTube link below.
-
+https://youtu.be/wdnD8_uXcG0 
 
 2. GUI Enhancement:
 Added an "Origin" button based on the previously developed GUI. After initiating the system with the "Start" button, pressing "Origin" commands the Turtlebot to move to the designated position and wait to receive colored blocks.
