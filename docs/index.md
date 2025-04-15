@@ -71,16 +71,20 @@ Dr. Aukes serves as our advisor for this project, providing technical guidance a
 
 ### iv. Project Progress & Future Tasks
 #### Current Achievements:
-1. UR5 Robotic Arm Control:
-Successfully implemented control over the UR5 robotic arm, enabling it to perform pick-and-place tasks from point A to point B. Shown in the YouTube link below.
-https://youtu.be/wdnD8_uXcG0
+1. UR5 Robotic Arm Control  
+We successfully implemented control over the UR5 robotic arm, enabling it to perform pick-and-place tasks from point A to point B.
+
+<div align="center">
 
 <iframe width="560" height="315"
         src="https://www.youtube.com/embed/wdnD8_uXcG0"
-        title="YouTube video player" frameborder="0"
+        title="UR5 Robotic Arm Demo" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen>
 </iframe>
+
+</div>
+
 
 
 3. GUI Enhancement:
