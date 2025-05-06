@@ -1099,32 +1099,32 @@ a moving-average filter to the latest N samples before redrawing the acceleratio
 <li>
 <p>UR5 ROS2 Control Node:</p>
 <p>a) The ROS2 nodes, implemented in Python, include:
-   <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py"><code>move_to_position.py</code></a>: sends trajectory commands to control robot motion.
-   <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py"><code>get_position.py</code></a>: subscribes and monitors robot joint states and end-effector poses.</p>
+    <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py"><code>move_to_position.py</code></a>: sends trajectory commands to control robot motion.
+    <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py"><code>get_position.py</code></a>: subscribes and monitors robot joint states and end-effector poses.</p>
 <p>b) Publishers and subscribers involved:
-   Publishes JointTrajectory messages to <code>/scaled_joint_trajectory_controller/joint_trajectory</code>.
-   Subscribes to <code>/joint_states for joint angles</code>.
-   Subscribes to <code>/tcp_pose_broadcaster/pose</code> for end-effector position feedback.</p>
+    Publishes JointTrajectory messages to <code>/scaled_joint_trajectory_controller/joint_trajectory</code>.
+    Subscribes to <code>/joint_states for joint angles</code>.
+    Subscribes to <code>/tcp_pose_broadcaster/pose</code> for end-effector position feedback.</p>
 <p>c) Motion strategy:
-   Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.
-   Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.</p>
+    Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.
+    Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.</p>
 <p>d) Feedback system:
-   Continuously monitors joint angles and end-effector positions.
-   Ensures closed-loop accuracy for task execution.</p>
+    Continuously monitors joint angles and end-effector positions.
+    Ensures closed-loop accuracy for task execution.</p>
 </li>
 <li>
 <p>URSim Simulation and Physical Robot Operation:</p>
 <p>a) Validation environment:
-   Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.</p>
+    Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.</p>
 <p>b) Physical hardware constraints:
-   Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.</p>
+    Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.</p>
 <p>c) Alternative solution implemented:
-   URP control script (ur5_control.urp) pre-developed.
-   Python script <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py"><code>load_and_run_script.py</code></a> communicates with robot via Dashboard server.</p>
+    URP control script (ur5_control.urp) pre-developed.
+    Python script <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py"><code>load_and_run_script.py</code></a> communicates with robot via Dashboard server.</p>
 <p>d) Python script functionality:
-   Establishes TCP socket connection to robot Dashboard server.
-   Loads and executes predefined URP program.
-   Enables coordinated robotic arm and gripper actions.</p>
+    Establishes TCP socket connection to robot Dashboard server.
+    Loads and executes predefined URP program.
+    Enables coordinated robotic arm and gripper actions.</p>
 </li>
 <li>
 <p>Turtlebot State Machine</p>
