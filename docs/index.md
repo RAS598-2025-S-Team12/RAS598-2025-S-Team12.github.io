@@ -120,8 +120,6 @@ We successfully enabled the TurtleBot to execute predefined actions. When button
 4. Path Planning Algorithm Implementation:
 Created an initial version of path planning within ttb_nav.py, incorporating obstacle detection and avoidance using ROS2's Nav2 framework.
 
-5. Color Detection and Topic Publishing:
-Integrated color detection logic in block_detector.py. Once the dominant color of a block is identified, it is published to the turtlebot_14/block_info topic. The Turtlebot subscribes to this topic to determine which workstation to navigate to based on the block color.
 
 #### Upcoming Tasks:
 1. Continuous Task Flow Logic:
