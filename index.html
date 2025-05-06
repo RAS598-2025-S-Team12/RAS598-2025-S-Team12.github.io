@@ -514,15 +514,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#conditions-change-in-any-environment-how-will-your-robot-handle-variability-in-its-environment" class="md-nav__link">
-    Conditions change in any environment. How will your robot handle variability in its environment?
+  <a href="#conditions-change-in-any-environment" class="md-nav__link">
+    Conditions change in any environment.
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#testing-evaluation-plan-please-describe-how-you-can-verify-your-system-is-working-as-expected" class="md-nav__link">
-    Testing &amp; Evaluation plan: Please describe how you can verify your system is working as expected?
+  <a href="#testing-evaluation-plan" class="md-nav__link">
+    Testing &amp; Evaluation plan:
   </a>
   
 </li>
@@ -578,6 +578,13 @@
           <li class="md-nav__item">
   <a href="#upcoming-tasks" class="md-nav__link">
     Upcoming Tasks:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-breakdown" class="md-nav__link">
+    Code Breakdown
   </a>
   
 </li>
@@ -829,15 +836,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#conditions-change-in-any-environment-how-will-your-robot-handle-variability-in-its-environment" class="md-nav__link">
-    Conditions change in any environment. How will your robot handle variability in its environment?
+  <a href="#conditions-change-in-any-environment" class="md-nav__link">
+    Conditions change in any environment.
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#testing-evaluation-plan-please-describe-how-you-can-verify-your-system-is-working-as-expected" class="md-nav__link">
-    Testing &amp; Evaluation plan: Please describe how you can verify your system is working as expected?
+  <a href="#testing-evaluation-plan" class="md-nav__link">
+    Testing &amp; Evaluation plan:
   </a>
   
 </li>
@@ -893,6 +900,13 @@
           <li class="md-nav__item">
   <a href="#upcoming-tasks" class="md-nav__link">
     Upcoming Tasks:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-breakdown" class="md-nav__link">
+    Code Breakdown
   </a>
   
 </li>
@@ -963,14 +977,14 @@
 <h2 id="ii-project">II. Project</h2>
 <h3 id="i-project-description">i. Project description</h3>
 <h4 id="concept">Concept:</h4>
-<p>Our project combines a UR5 robotic arm with a Turtlebot to create an automated delivery robot systems. We will set up three cargo stations (A, B, C) and three different types of cargo (a, b, c). The UR5 robotic arm will transfer the colored blocks onto the Turtlebot, and after the Turtlebot reads the colors, it will deliver the block to the designated workstation.</p>
+<p>Our project combines a UR5 robotic arm with a Turtlebot to create an automated delivery robot system. We will set up two workstations (A, B) and two different colors of blocks (Red, Blue). The UR5 robotic arm will transfer the colored blocks onto the Turtlebot, and after the Turtlebot reads the colors, it will deliver the block to the designated workstation.</p>
 <h4 id="the-research-question-this-project-seeks-to-answer-is">The research question this project seeks to answer is:</h4>
-<p>To present how can the integration of a UR5 robotic arm and a Turtlebot automate and optimize the process of sorting and delivering different types of goods to designated stations.</p>
+<p>To present the integration of a UR5 robotic arm and a Turtlebot, and optimize the process of sorting and delivering different colors of blocks to designated workstations.</p>
 <h3 id="ii-sensor-integration">ii. Sensor Integration</h3>
-<p>The LiDAR will be used to collect a 3D point cloud and convert it into a map. During testing, we ensure that the LiDAR accurately maps the environment and effectively avoids obstacles by comparing real-time data with the generated map. The IMU is evaluated to confirm that it precisely measures movement and maintains stability, which is vital for the robot's mobility. Additionally, the camera’s ability to recognize colors under various conditions will be tested. In the final demonstration, the LiDAR will be fully integrated to enable smooth navigation, ensuring that the Turtlebot moves efficiently towards workstations with the ability to avoid obstacles without collision. The IMU will be used to maintain the Turtlebot's balance and ensure stable movement during delivery tasks.</p>
+<p>The LiDAR will be used to collect a 3D point cloud and convert it into a map. During testing, we ensure that the LiDAR accurately senses the environment with real-time data to generate the complete map. The IMU is evaluated to confirm that it precisely measures movement and maintains stability, which is crucial for the robot's mobility. Additionally, the camera’s ability to recognize colors under various conditions will be tested. In the final demonstration, the LiDAR will be fully integrated to enable smooth navigation, ensuring that the Turtlebot moves efficiently towards workstations with the ability to avoid obstacles without collision. The IMU will be used to maintain the Turtlebot's balance and ensure stable movement during delivery tasks.</p>
 <h3 id="iii-interaction">iii. Interaction</h3>
 <h4 id="rviz-interface">RViz Interface:</h4>
-<p>We will use RViz to visualize robot states, sensor data, task progress, and debugging information in real-time.</p>
+<p>We will use RViz to visualize the turtlebot states, LiDAR data, environment map, tf frames, navigation goals (two workstations), the planned path generated by Nav2, and debugging in real-time.</p>
 <h3 id="iv-control-and-autonomy">iv. Control and Autonomy</h3>
 <p>The processed sensor data enables real-time responses such as collision avoidance, stability adjustments, and immediate path corrections. For instance, the LiDAR data helps detect obstacles, while the IMU provides vital motion and balance information. At the higher level, the controller uses the refined sensor data to update path planning, ensuring the Turtlebot navigates efficiently and delivers blocks to the designated workstation based on color recognition.</p>
 <h3 id="v-preparation-needs">v. Preparation needs</h3>
@@ -990,9 +1004,9 @@
 <li>Several boards make up the obstacle course. </li>
 <li>Enough space for robotic operation</li>
 </ul>
-<h4 id="conditions-change-in-any-environment-how-will-your-robot-handle-variability-in-its-environment">Conditions change in any environment. How will your robot handle variability in its environment?</h4>
-<p>We will test under serval different obstacle conditions to ensure that the robot are robust enough to handle variability.</p>
-<h4 id="testing-evaluation-plan-please-describe-how-you-can-verify-your-system-is-working-as-expected">Testing &amp; Evaluation plan: Please describe how you can verify your system is working as expected?</h4>
+<h4 id="conditions-change-in-any-environment">Conditions change in any environment.</h4>
+<p>We will test under several different obstacle conditions to ensure that the robot are robust enough to handle variability.</p>
+<h4 id="testing-evaluation-plan">Testing &amp; Evaluation plan:</h4>
 <p>We will conduct several tests to see if the robot works accurately. We will compare the sensor data and analog outputs to real-world conditions to ensure that our designed algorithms can accurately adapt to environmental changes.</p>
 <h3 id="vii-impact">vii. Impact</h3>
 <p>This project will enhance our understanding of multi-robot communication by coordinating the UR5 robotic arm and TurtleBot 4. Building an Rviz simulation will help us simulate and test the system. Developing our own user interface will improve interaction and control. Lastly, exploring different path-planning algorithms will deepen our knowledge of autonomous navigation.</p>
@@ -1066,6 +1080,25 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 <li>
 <p>System Integration and Validation</p>
 </li>
+</ol>
+<h4 id="code-breakdown">Code Breakdown</h4>
+<ol>
+<li>GUI:
+   a) The <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py"><code>gui.py</code></a>, defines a 
+      TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.</li>
+</ol>
+<p>b) It creates publishers for <code>/turtlebot_state</code>, <code>/gui_cmd_vel</code>, and <code>/simple_goal</code>, and subscribers for <code>/default_vel</code>, <code>/c3_14/odom</code>, and 
+      <code>/c3_14/imu</code>, handling state, velocity commands, odometry, and IMU data.</p>
+<p>c) The GUI layout comprises a read-only logging panel, a Matplotlib canvas plotting raw and FIR-filtered linear acceleration over time, and 
+      text fields displaying current linear and angular velocities.</p>
+<p>d) Spin-box controls with Reset/Send buttons enable manual velocity entry, while large START/STOP and A/B/Origin buttons toggle operation 
+      and dispatch predefined navigation goals, each action logged with a timestamp.</p>
+<p>e) Callback methods (odom_callback, imu_callback) update velocity displays and append IMU samples to a rolling buffer; update_plot applies 
+      a moving-average filter to the latest N samples before redrawing the acceleration graph.
+2. UR5 Robotic Arm</p>
+<ol>
+<li>Turtlebot State Machine</li>
+<li>Turtlebot Navigation</li>
 </ol>
 
 
