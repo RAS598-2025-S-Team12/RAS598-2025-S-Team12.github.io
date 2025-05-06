@@ -174,8 +174,8 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 4. Turtlebot Navigation
 
    a) The [`ttb_nav.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py) 
-     defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to /turtlebot_state commands 
-     and translates them into Nav2 NavigateToPose goals.
+     defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to `/turtlebot_state` 
+     commands and translates them into Nav2 NavigateToPose goals.
 
    b) It retrieves three parameters `origin_pos`, `ws1_pos`, `ws2_pos` as [x, y, yaw_deg] from [`ttb_pos_point.yaml`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/config/ttb_pos_point.yaml), logs 
      these goal positions, initializes an ActionClient for the `navigate_to_pose` action server, and subscribes to `/turtlebot_state`, while 
