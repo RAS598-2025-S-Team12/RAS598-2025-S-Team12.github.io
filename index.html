@@ -1108,9 +1108,9 @@ a moving-average filter to the latest N samples before redrawing the acceleratio
    get_position.py: subscribes and monitors robot joint states and end-effector poses.
 
 b) Publishers and subscribers involved:
-   Publishes JointTrajectory messages to /scaled_joint_trajectory_controller/joint_trajectory.
-   Subscribes to /joint_states for joint angles.
-   Subscribes to /tcp_pose_broadcaster/pose for end-effector position feedback.
+   Publishes JointTrajectory messages to `/scaled_joint_trajectory_controller/joint_trajectory`.
+   Subscribes to `/joint_states for joint angles`.
+   Subscribes to `/tcp_pose_broadcaster/pose` for end-effector position feedback.
 
 c) Motion strategy:
    Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.
