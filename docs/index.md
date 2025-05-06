@@ -154,8 +154,8 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 2. UR5 ROS2 Control Node:
 
     a) The ROS2 nodes, implemented in Python, include:
-       move_to_position.py: sends trajectory commands to control robot motion.
-       get_position.py: subscribes and monitors robot joint states and end-effector poses.
+       [`move_to_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py): sends trajectory commands to control robot motion.
+       [`get_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py): subscribes and monitors robot joint states and end-effector poses.
 
     b) Publishers and subscribers involved:
        Publishes JointTrajectory messages to `/scaled_joint_trajectory_controller/joint_trajectory`.
@@ -180,7 +180,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
     c) Alternative solution implemented:
        URP control script (ur5_control.urp) pre-developed.
-       Python script (load_and_run_script.py) communicates with robot via Dashboard server.
+       Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.
 
     d) Python script functionality:
        Establishes TCP socket connection to robot Dashboard server.
