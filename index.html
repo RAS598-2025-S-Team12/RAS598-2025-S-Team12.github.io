@@ -1083,10 +1083,10 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 </ol>
 <h4 id="code-breakdown">Code Breakdown</h4>
 <ol>
-<li>GUI:
-   a) The <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py"><code>gui.py</code></a>, defines a 
-      TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.</li>
+<li>GUI:</li>
 </ol>
+<p>a) The <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py"><code>gui.py</code></a>, defines a 
+      TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.</p>
 <p>b) It creates publishers for <code>/turtlebot_state</code>, <code>/gui_cmd_vel</code>, and <code>/simple_goal</code>, and subscribers for <code>/default_vel</code>, <code>/c3_14/odom</code>, and 
       <code>/c3_14/imu</code>, handling state, velocity commands, odometry, and IMU data.</p>
 <p>c) The GUI layout comprises a read-only logging panel, a Matplotlib canvas plotting raw and FIR-filtered linear acceleration over time, and 
@@ -1094,10 +1094,14 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 <p>d) Spin-box controls with Reset/Send buttons enable manual velocity entry, while large START/STOP and A/B/Origin buttons toggle operation 
       and dispatch predefined navigation goals, each action logged with a timestamp.</p>
 <p>e) Callback methods (odom_callback, imu_callback) update velocity displays and append IMU samples to a rolling buffer; update_plot applies 
-      a moving-average filter to the latest N samples before redrawing the acceleration graph.
-2. UR5 Robotic Arm</p>
+      a moving-average filter to the latest N samples before redrawing the acceleration graph.</p>
 <ol>
-<li>Turtlebot State Machine</li>
+<li>
+<p>UR5 Robotic Arm</p>
+</li>
+<li>
+<p>Turtlebot State Machine</p>
+</li>
 <li>Turtlebot Navigation</li>
 </ol>
 
