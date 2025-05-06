@@ -135,6 +135,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 #### Code Breakdown
 1. GUI:
+   
    a) The [`gui.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py), defines a 
       TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.
 
@@ -149,7 +150,8 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
    e) Callback methods (odom_callback, imu_callback) update velocity displays and append IMU samples to a rolling buffer; update_plot applies 
       a moving-average filter to the latest N samples before redrawing the acceleration graph.
+   
 2. UR5 Robotic Arm
  
-3. Turtlebot State Machine
-4. Turtlebot Navigation
+4. Turtlebot State Machine
+5. Turtlebot Navigation
