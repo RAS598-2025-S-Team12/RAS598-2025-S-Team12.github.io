@@ -24,13 +24,12 @@ tags:
 
 ## II. Project
 ### i. Project description
-#### Concept:
-Our project combines a UR5 robotic arm with a Turtlebot to create an automated delivery robot system. We will set up two workstations (A, B) and two different colors of blocks (Red, Blue). The UR5 robotic arm will transfer the colored blocks onto the Turtlebot, and after the Turtlebot reads the colors, it will deliver the block to the designated workstation.
-#### The research question this project seeks to answer is: 
-To present the integration of a UR5 robotic arm and a Turtlebot, and optimize the process of sorting and delivering different colors of blocks to designated workstations.
+#### Scope:
+This project aims to develop an automated delivery system by integrating a UR5 robotic arm with a TurtleBot. Two workstations, A and B, will be set up alongside red and blue blocks. The UR5 arm will transfer the colored blocks onto the TurtleBot, which will then identify each block’s color and autonomously navigate to deliver it to the designated workstation. Through this integration, we seek to optimize the sorting and delivery workflow.
 
-### ii. Sensor Integration
+#### Data Collection and Filtering
 The LiDAR will be used to collect a 3D point cloud and convert it into a map. During testing, we ensure that the LiDAR accurately senses the environment with real-time data to generate the complete map. The IMU is evaluated to confirm that it precisely measures movement and maintains stability, which is crucial for the robot's mobility. Additionally, the camera’s ability to recognize colors under various conditions will be tested. In the final demonstration, the LiDAR will be fully integrated to enable smooth navigation, ensuring that the Turtlebot moves efficiently towards workstations with the ability to avoid obstacles without collision. The IMU will be used to maintain the Turtlebot's balance and ensure stable movement during delivery tasks.
+
 
 ### iii. Interaction
 #### RViz Interface:
