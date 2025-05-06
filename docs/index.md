@@ -151,9 +151,41 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
    e) Callback methods (odom_callback, imu_callback) update velocity displays and append IMU samples to a rolling buffer; update_plot applies 
       a moving-average filter to the latest N samples before redrawing the acceleration graph.
    
-2. UR5 Robotic Arm
+2. UR5 ROS2 Control Node:
+        a) The ROS2 nodes, implemented in Python, include:
+           move_to_position.py: sends trajectory commands to control robot motion.
+           get_position.py: subscribes and monitors robot joint states and end-effector poses.
+
+        b) Publishers and subscribers involved:
+           Publishes JointTrajectory messages to /scaled_joint_trajectory_controller/joint_trajectory.
+           Subscribes to /joint_states for joint angles.
+           Subscribes to /tcp_pose_broadcaster/pose for end-effector position feedback.
+
+        c) Motion strategy:
+           Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.
+           Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.
+
+        d) Feedback system:
+           Continuously monitors joint angles and end-effector positions.
+           Ensures closed-loop accuracy for task execution.
+
+3. URSim Simulation and Physical Robot Operation:
+        a) Validation environment:
+           Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
+
+        b) Physical hardware constraints:
+           Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.
+
+        c) Alternative solution implemented:
+           URP control script (ur5_control.urp) pre-developed.
+           Python script (load_and_run_script.py) communicates with robot via Dashboard server.
+
+        d) Python script functionality:
+           Establishes TCP socket connection to robot Dashboard server.
+           Loads and executes predefined URP program.
+           Enables coordinated robotic arm and gripper actions.
  
-3. Turtlebot State Machine
+4. Turtlebot State Machine
 
    a) The [`turtlebot_state.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/turtlebot_state.py) defines a TurtleBotState class that inherits from rclpy.Node, containing 
      the logic for monitoring and publishing the robot’s current action state.
@@ -171,7 +203,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
    e) Every second, check_arrival_condition checks if the robot has held zero velocity for more than 3 seconds during an action—if so, it 
      publishes either “Arrived at A” or “Arrived at B” and then clears the action state.
    
-4. Turtlebot Navigation
+5. Turtlebot Navigation
 
    a) The [`ttb_nav.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py) 
      defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to `/turtlebot_state` 
