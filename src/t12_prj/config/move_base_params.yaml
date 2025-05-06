@@ -1,0 +1,21 @@
+# Move_base (Navigation2) parameters for path planning and obstacle avoidance
+use_sim_time: true
+
+move_base:
+  # Global planner parameters
+  global_planner:
+    plugin: "nav2_navfn_planner/NavfnPlanner"
+    tolerance: 0.5        # allowed tolerance in meters to reach target
+
+  # Local planner parameters (using DWB: Dynamic Window Approach)
+  local_planner:
+    plugin: "dwb_core::DWBLocalPlanner"
+    max_vel_x: 0.5        # maximum linear velocity [m/s]
+    max_vel_y: 0.0        # maximum lateral velocity [m/s]
+    max_vel_theta: 1.0    # maximum angular velocity [rad/s]
+    min_vel_x: 0.0        # minimum linear velocity [m/s]
+    min_vel_y: 0.0
+    min_vel_theta: -1.0   # minimum angular velocity [rad/s]
+    controller_frequency: 20.0   # control loop frequency [Hz]
+    # 此處可根據實際需求擴充更多 DWB local planner 參數
+

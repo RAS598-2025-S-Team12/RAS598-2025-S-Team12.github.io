@@ -1,0 +1,4 @@
+ttb_pos_point:
+  origin_pos: [1.0, 1.0, 1.0]
+  ws1_pos: [3.0, 4.0, 1.0]
+  ws2_pos: [5.0, 6.0, 1.0]

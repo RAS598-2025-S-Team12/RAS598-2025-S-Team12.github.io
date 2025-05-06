@@ -1,0 +1,9 @@
+# Basic robot configuration parameters
+robot:
+  name: "turtlebot4"         # Robot name
+  base_frame: "base_link"     # Base frame of the robot
+  odom_frame: "odom"          # Odometry reference frame
+  map_frame: "map"            # Map reference frame
+  laser_frame: "laser"        # Laser sensor frame (adjust based on your sensor configuration)
+  use_sim_time: true          # Use simulation time in RViz/ROS2
+

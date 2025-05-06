@@ -1,0 +1,155 @@
+def ur5_control():
+  global _hidden_verificationVariable=0
+  step_count_f3750bfd_cf85_4ee7_821b_253e4403f695 = 0.0
+  thread Step_Counter_Thread_124a6028_1cc8_48d4_b966_50a2082c5a5d():
+    while (True):
+      step_count_f3750bfd_cf85_4ee7_821b_253e4403f695 = step_count_f3750bfd_cf85_4ee7_821b_253e4403f695 + 1.0
+      sync()
+    end
+  end
+  run Step_Counter_Thread_124a6028_1cc8_48d4_b966_50a2082c5a5d()
+  set_standard_analog_input_domain(0, 1)
+  set_standard_analog_input_domain(1, 1)
+  set_tool_analog_input_domain(0, 1)
+  set_tool_analog_input_domain(1, 1)
+  set_analog_outputdomain(0, 0)
+  set_analog_outputdomain(1, 0)
+  set_input_actions_to_default()
+  set_tool_communication(False, 115200, 0, 1, 1.5, 3.5)
+  set_tool_output_mode(0)
+  set_tool_digital_output_mode(0, 1)
+  set_tool_digital_output_mode(1, 1)
+  set_tool_voltage(0)
+  set_safety_mode_transition_hardness(1)
+  set_tcp(p[0.0,0.0,0.0,0.0,0.0,0.0])
+  set_gravity([0.0, 0.0, 9.82])
+  set_target_payload(0.000000, [0.000000, 0.000000, 0.000000], [0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000])
+  # begin: URCap Installation Node
+  #   Source: External Control, 1.0.5, FZI Research Center for Information Technology
+  #   Type: External Control
+  # end: URCap Installation Node
+  global Waypoint1_2_p=p[.479521677828, .391169168523, .224120201838, -2.559150835281, 1.714173152705, .094684932143]
+  global Waypoint1_2_q=[-2.688156113930085, -1.1328932174860018, 1.7474236470780862, 4.076914599797321, -1.4875441214235918, 0.06387905055150851]
+  global Waypoint1_1_p=p[.479649586361, .391038778168, -.007708117726, -2.560067063229, 1.714497185018, .092377644050]
+  global Waypoint1_1_q=[-2.688156113921668, -0.7082546104592975, 1.8081611050661284, 3.5915385347539086, -1.4892894507267531, 0.06370451769779173]
+  global Waypoint_3_p=p[-.287168169377, .603407716469, .224159475993, -2.535417942311, 1.700871664495, -.064729534974]
+  global Waypoint_3_q=[-1.3131857292005336, -1.0260790672474656, 1.5770795121020766, 4.135034063824964, -1.6646950405521883, 1.4381513036433282]
+  global Waypoint_4_p=p[-.288037403113, .603108061171, -.512120023115, -2.536430694089, 1.699305278030, -.064623470016]
+  global Waypoint_4_q=[-1.311789465798938, 0.6150540284028018, 0.3986332011555049, 3.6723472791212686, -1.6646950405521883, 1.438325836568527]
+  global Waypoint2_2_p=p[.530931950744, .266907774070, .224126109955, -2.558798286343, 1.714107043549, .094268328047]
+  global Waypoint2_2_q=[-2.9167942459329224, -1.181413370674961, 1.8160150867000948, 4.075867402182373, -1.4849261275967862, -0.16545721308906103]
+  global Waypoint2_1_p=p[.531030310124, .266734818225, -.014736501217, -2.560089222620, 1.714651603152, .092146018772]
+  global Waypoint2_1_q=[-2.916794245921886, -0.7215191128458915, 1.8772761434755911, 3.5547120875080216, -1.4868459898378497, -0.1656317459295602]
+  global Waypoint3_2_p=p[.576696870017, .155654783823, .224031957610, -2.558863352413, 1.713891643101, .094469383501]
+  global Waypoint3_2_q=[-3.1175071099122715, -1.1740829878165855, 1.7997835246565528, 4.102047340962272, -1.4861478580731717, -0.36704274169440754]
+  global Waypoint3_1_p=p[.576769701554, .155465934008, -.009622559795, -2.560222013067, 1.714774267091, .092812081589]
+  global Waypoint3_1_q=[-3.117507109907056, -0.7318165554249694, 1.865582437482699, 3.593981995690837, -1.4880677202805996, -0.36704274161872785]
+  while (True):
+    $ 2 "Robot Program"
+    $ 3 "MoveJ"
+    $ 4 "Waypoint1_2" "breakAfter"
+    movej(get_inverse_kin(Waypoint1_2_p, qnear=Waypoint1_2_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 5 "Wait: 3.0"
+    sleep(3.0)
+    $ 6 "MoveJ"
+    $ 7 "Waypoint1_1" "breakAfter"
+    movej(get_inverse_kin(Waypoint1_1_p, qnear=Waypoint1_1_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 8 "Wait: 0.5"
+    sleep(0.5)
+    $ 9 "MoveL"
+    $ 10 "Waypoint1_2" "breakAfter"
+    movel(Waypoint1_2_p, a=1.2, v=0.25)
+    $ 11 "Wait: 0.5"
+    sleep(0.5)
+    $ 12 "MoveJ"
+    $ 13 "Waypoint_3" "breakAfter"
+    movej(get_inverse_kin(Waypoint_3_p, qnear=Waypoint_3_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 14 "Wait: 0.5"
+    sleep(0.5)
+    $ 15 "MoveL"
+    $ 16 "Waypoint_4" "breakAfter"
+    movel(Waypoint_4_p, a=1.2, v=0.25)
+    $ 17 "Wait: 0.5"
+    sleep(0.5)
+    $ 18 "MoveL"
+    $ 19 "Waypoint_3" "breakAfter"
+    movel(Waypoint_3_p, a=1.2, v=0.25)
+    $ 20 "Wait: 0.5"
+    sleep(0.5)
+    $ 21 "MoveJ"
+    $ 22 "Waypoint1_2" "breakAfter"
+    movej(get_inverse_kin(Waypoint1_2_p, qnear=Waypoint1_2_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 23 "Wait: 3.0"
+    sleep(3.0)
+    $ 24 "MoveJ"
+    $ 25 "Waypoint2_2" "breakAfter"
+    movej(get_inverse_kin(Waypoint2_2_p, qnear=Waypoint2_2_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 26 "Wait: 0.5"
+    sleep(0.5)
+    $ 27 "MoveL"
+    $ 28 "Waypoint2_1" "breakAfter"
+    movel(Waypoint2_1_p, a=1.2, v=0.25)
+    $ 29 "Wait: 0.5"
+    sleep(0.5)
+    $ 30 "MoveL"
+    $ 31 "Waypoint2_2" "breakAfter"
+    movel(Waypoint2_2_p, a=1.2, v=0.25)
+    $ 32 "Wait: 0.5"
+    sleep(0.5)
+    $ 33 "MoveJ"
+    $ 34 "Waypoint_3" "breakAfter"
+    movej(get_inverse_kin(Waypoint_3_p, qnear=Waypoint_3_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 35 "Wait: 0.5"
+    sleep(0.5)
+    $ 36 "MoveL"
+    $ 37 "Waypoint_4" "breakAfter"
+    movel(Waypoint_4_p, a=1.2, v=0.25)
+    $ 38 "Wait: 0.5"
+    sleep(0.5)
+    $ 39 "MoveL"
+    $ 40 "Waypoint_3" "breakAfter"
+    movel(Waypoint_3_p, a=1.2, v=0.25)
+    $ 41 "Wait: 0.5"
+    sleep(0.5)
+    $ 42 "MoveJ"
+    $ 43 "Waypoint1_2" "breakAfter"
+    movej(get_inverse_kin(Waypoint1_2_p, qnear=Waypoint1_2_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 44 "Wait: 3.0"
+    sleep(3.0)
+    $ 45 "MoveJ"
+    $ 46 "Waypoint3_2" "breakAfter"
+    movej(get_inverse_kin(Waypoint3_2_p, qnear=Waypoint3_2_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 47 "Wait: 0.5"
+    sleep(0.5)
+    $ 48 "MoveL"
+    $ 49 "Waypoint3_1" "breakAfter"
+    movel(Waypoint3_1_p, a=1.2, v=0.25)
+    $ 50 "Wait: 0.5"
+    sleep(0.5)
+    $ 51 "MoveL"
+    $ 52 "Waypoint3_2" "breakAfter"
+    movel(Waypoint3_2_p, a=1.2, v=0.25)
+    $ 53 "Wait: 0.5"
+    sleep(0.5)
+    $ 54 "MoveJ"
+    $ 55 "Waypoint_3" "breakAfter"
+    movej(get_inverse_kin(Waypoint_3_p, qnear=Waypoint_3_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 56 "Wait: 0.5"
+    sleep(0.5)
+    $ 57 "MoveL"
+    $ 58 "Waypoint_4" "breakAfter"
+    movel(Waypoint_4_p, a=1.2, v=0.25)
+    $ 59 "Wait: 0.5"
+    sleep(0.5)
+    $ 60 "MoveL"
+    $ 61 "Waypoint_3" "breakAfter"
+    movel(Waypoint_3_p, a=1.2, v=0.25)
+    $ 62 "Wait: 0.5"
+    sleep(0.5)
+    $ 63 "MoveJ"
+    $ 64 "Waypoint1_2" "breakAfter"
+    movej(get_inverse_kin(Waypoint1_2_p, qnear=Waypoint1_2_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 65 "Wait: 3.0"
+    sleep(3.0)
+  end
+end

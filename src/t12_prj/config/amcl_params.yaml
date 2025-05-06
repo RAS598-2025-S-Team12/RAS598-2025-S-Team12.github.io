@@ -1,0 +1,17 @@
+# AMCL parameters for Turtlebot localization
+use_sim_time: true
+
+amcl:
+  min_particles: 500            # minimum number of particles
+  max_particles: 2000           # maximum number of particles
+  kld_err: 0.05                 # KLD sampling error threshold
+  kld_z: 0.99                   # confidence level
+  update_min_d: 0.2             # minimum distance for filter update (meters)
+  update_min_a: 0.2             # minimum angle for filter update (radians)
+  resample_interval: 1          # perform resampling every n-th update
+  alpha1: 0.2                   # error parameters for motion model
+  alpha2: 0.2
+  alpha3: 0.2
+  alpha4: 0.2
+  alpha5: 0.1
+

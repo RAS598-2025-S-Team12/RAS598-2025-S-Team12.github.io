@@ -1,0 +1,66 @@
+ Program
+   Variables Setup
+   Robot Program
+     MoveJ
+       Waypoint1_2
+     Wait: 3.0
+     MoveJ
+       Waypoint1_1
+     Wait: 0.5
+     MoveL
+       Waypoint1_2
+     Wait: 0.5
+     MoveJ
+       Waypoint_3
+     Wait: 0.5
+     MoveL
+       Waypoint_4
+     Wait: 0.5
+     MoveL
+       Waypoint_3
+     Wait: 0.5
+     MoveJ
+       Waypoint1_2
+     Wait: 3.0
+     MoveJ
+       Waypoint2_2
+     Wait: 0.5
+     MoveL
+       Waypoint2_1
+     Wait: 0.5
+     MoveL
+       Waypoint2_2
+     Wait: 0.5
+     MoveJ
+       Waypoint_3
+     Wait: 0.5
+     MoveL
+       Waypoint_4
+     Wait: 0.5
+     MoveL
+       Waypoint_3
+     Wait: 0.5
+     MoveJ
+       Waypoint1_2
+     Wait: 3.0
+     MoveJ
+       Waypoint3_2
+     Wait: 0.5
+     MoveL
+       Waypoint3_1
+     Wait: 0.5
+     MoveL
+       Waypoint3_2
+     Wait: 0.5
+     MoveJ
+       Waypoint_3
+     Wait: 0.5
+     MoveL
+       Waypoint_4
+     Wait: 0.5
+     MoveL
+       Waypoint_3
+     Wait: 0.5
+     MoveJ
+       Waypoint1_2
+     Wait: 3.0
