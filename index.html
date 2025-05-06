@@ -1117,6 +1117,21 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 <ol>
 <li>Turtlebot Navigation</li>
 </ol>
+<p>a) The <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py"><code>ttb_nav.py</code></a> 
+     defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to /turtlebot_state commands 
+     and translates them into Nav2 NavigateToPose goals.</p>
+<p>b) It retrieves three parameters <code>origin_pos</code>, <code>ws1_pos</code>, <code>ws2_pos</code> as [x, y, yaw_deg] from <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/config/ttb_pos_point.yaml"><code>ttb_pos_point.yaml</code></a>, logs 
+     these goal positions, initializes an ActionClient for the <code>navigate_to_pose</code> action server, and subscribes to <code>/turtlebot_state</code>, while 
+     tracking the last sent goal with <code>current_goal_tag</code>.</p>
+<p>c) The state_cb callback strips and logs each incoming state string, ignores <code>Idle</code> or <code>AtLoad</code>, then maps "StartReturn"/"Origin" → 
+     <code>origin</code>, "StartDelivery1" → <code>ws1</code>, "StartDelivery2" → <code>ws2</code>, invoking <code>send_goal</code> only if the requested tag differs from 
+     <code>current_goal_tag</code>.</p>
+<p>d) The send_goal(pos_xyz, tag) method converts the [x, y, yaw_deg] tuple into a PoseStamped (using quaternion_from_euler for the yaw), 
+     stamps it in the map frame with the current time, logs the outgoing goal, updates <code>current_goal_tag</code>, and calls <code>send_goal_async</code> with 
+     <code>feedback_cb</code> attached.</p>
+<p>e) The feedback and result callbacks handle the rest: <code>feedback_cb</code> logs the remaining distance, <code>goal_resp_cb</code> checks acceptance 
+     (resetting the tag on rejection and chaining <code>result_cb</code>), and <code>result_cb</code> logs success, cancellation or failure, then clears 
+     <code>current_goal_tag</code> so new goals can be sent.</p>
 
 
 
