@@ -136,93 +136,94 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 #### Code Breakdown
 1. GUI:
    
-        a) The [`gui.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py), defines a 
-        TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.
-        
-        b) It creates publishers for `/turtlebot_state`, `/gui_cmd_vel`, and `/simple_goal`, and subscribers for `/default_vel`, `/c3_14/odom`, and 
-        `/c3_14/imu`, handling state, velocity commands, odometry, and IMU data.
-        
-        c) The GUI layout comprises a read-only logging panel, a Matplotlib canvas plotting raw and FIR-filtered linear acceleration over time, and 
-        text fields displaying current linear and angular velocities.
-        
-        d) Spin-box controls with Reset/Send buttons enable manual velocity entry, while large START/STOP and A/B/Origin buttons toggle operation 
-        and dispatch predefined navigation goals, each action logged with a timestamp.
-        
-        e) Callback methods (odom_callback, imu_callback) update velocity displays and append IMU samples to a rolling buffer; update_plot applies 
-        a moving-average filter to the latest N samples before redrawing the acceleration graph.
+    a) The [`gui.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py), defines a 
+    TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.
+
+    b) It creates publishers for `/turtlebot_state`, `/gui_cmd_vel`, and `/simple_goal`, and subscribers for `/default_vel`, `/c3_14/odom`, and 
+    `/c3_14/imu`, handling state, velocity commands, odometry, and IMU data.
+
+    c) The GUI layout comprises a read-only logging panel, a Matplotlib canvas plotting raw and FIR-filtered linear acceleration over time, and 
+    text fields displaying current linear and angular velocities.
+
+    d) Spin-box controls with Reset/Send buttons enable manual velocity entry, while large START/STOP and A/B/Origin buttons toggle operation 
+    and dispatch predefined navigation goals, each action logged with a timestamp.
+
+    e) Callback methods (odom_callback, imu_callback) update velocity displays and append IMU samples to a rolling buffer; update_plot applies 
+    a moving-average filter to the latest N samples before redrawing the acceleration graph.
    
 2. UR5 ROS2 Control Node:
 
-        a) The ROS2 nodes, implemented in Python, include:
-           move_to_position.py: sends trajectory commands to control robot motion.
-           get_position.py: subscribes and monitors robot joint states and end-effector poses.
+    a) The ROS2 nodes, implemented in Python, include:
+       move_to_position.py: sends trajectory commands to control robot motion.
+       get_position.py: subscribes and monitors robot joint states and end-effector poses.
 
-        b) Publishers and subscribers involved:
-           Publishes JointTrajectory messages to `/scaled_joint_trajectory_controller/joint_trajectory`.
-           Subscribes to `/joint_states for joint angles`.
-           Subscribes to `/tcp_pose_broadcaster/pose` for end-effector position feedback.
+    b) Publishers and subscribers involved:
+       Publishes JointTrajectory messages to `/scaled_joint_trajectory_controller/joint_trajectory`.
+       Subscribes to `/joint_states for joint angles`.
+       Subscribes to `/tcp_pose_broadcaster/pose` for end-effector position feedback.
 
-        c) Motion strategy:
-           Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.
-           Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.
+    c) Motion strategy:
+       Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.
+       Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.
 
-        d) Feedback system:
-           Continuously monitors joint angles and end-effector positions.
-           Ensures closed-loop accuracy for task execution.
+    d) Feedback system:
+       Continuously monitors joint angles and end-effector positions.
+       Ensures closed-loop accuracy for task execution.
 
 3. URSim Simulation and Physical Robot Operation:
 
-        a) Validation environment:
-           Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
+    a) Validation environment:
+       Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
 
-        b) Physical hardware constraints:
-           Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.
+    b) Physical hardware constraints:
+       Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.
 
-        c) Alternative solution implemented:
-           URP control script (ur5_control.urp) pre-developed.
-           Python script (load_and_run_script.py) communicates with robot via Dashboard server.
+    c) Alternative solution implemented:
+       URP control script (ur5_control.urp) pre-developed.
+       Python script (load_and_run_script.py) communicates with robot via Dashboard server.
 
-        d) Python script functionality:
-           Establishes TCP socket connection to robot Dashboard server.
-           Loads and executes predefined URP program.
-           Enables coordinated robotic arm and gripper actions.
+    d) Python script functionality:
+       Establishes TCP socket connection to robot Dashboard server.
+       Loads and executes predefined URP program.
+       Enables coordinated robotic arm and gripper actions.
  
 4. Turtlebot State Machine
 
-        a) The [`turtlebot_state.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/turtlebot_state.py) defines a TurtleBotState class that inherits from rclpy.Node, containing 
-        the logic for monitoring and publishing the robot’s current action state.
-        
-        b) It creates a publisher on `/turtlebot_state` and two subscribers—one to the same topic for echoing state updates 
-        (state_callback), and one to `/c3_14/cmd_vel` for velocity commands (vel_callback)—then initializes action_in_progress, zero_cmd_time, 
-        and a 1 Hz timer (check_arrival_condition).
-        
-        c) The publish_state(text) method wraps text into a String message, publishes it, and logs the update; state_callback sets 
-        action_in_progress (“A”, “B” or None) based on incoming state strings.
-        
-        d) The vel_callback watches for consecutive zero-velocity Twist messages during an active action, stamping the first zero-command time, 
-        while non-zero commands reset that timer.
-        
-        e) Every second, check_arrival_condition checks if the robot has held zero velocity for more than 3 seconds during an action—if so, it 
-        publishes either “Arrived at A” or “Arrived at B” and then clears the action state.
+    a) The [`turtlebot_state.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/turtlebot_state.py) defines a TurtleBotState class 
+    that inherits from rclpy.Node, containing 
+    the logic for monitoring and publishing the robot’s current action state.
+
+    b) It creates a publisher on `/turtlebot_state` and two subscribers—one to the same topic for echoing state updates 
+    (state_callback), and one to `/c3_14/cmd_vel` for velocity commands (vel_callback)—then initializes action_in_progress, zero_cmd_time, 
+    and a 1 Hz timer (check_arrival_condition).
+
+    c) The publish_state(text) method wraps text into a String message, publishes it, and logs the update; state_callback sets 
+    action_in_progress (“A”, “B” or None) based on incoming state strings.
+
+    d) The vel_callback watches for consecutive zero-velocity Twist messages during an active action, stamping the first zero-command time, 
+    while non-zero commands reset that timer.
+
+    e) Every second, check_arrival_condition checks if the robot has held zero velocity for more than 3 seconds during an action—if so, it 
+    publishes either “Arrived at A” or “Arrived at B” and then clears the action state.
    
 5. Turtlebot Navigation
 
-        a) The [`ttb_nav.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py) 
-        defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to `/turtlebot_state` 
-        commands and translates them into Nav2 NavigateToPose goals.
-        
-        b) It retrieves three parameters `origin_pos`, `ws1_pos`, `ws2_pos` as [x, y, yaw_deg] from [`ttb_pos_point.yaml`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/config/ttb_pos_point.yaml), logs 
-        these goal positions, initializes an ActionClient for the `navigate_to_pose` action server, and subscribes to `/turtlebot_state`, while 
-        tracking the last sent goal with `current_goal_tag`.
-        
-        c) The state_cb callback strips and logs each incoming state string, ignores `Idle` or `AtLoad`, then maps "StartReturn"/"Origin" → 
-        `origin`, "StartDelivery1" → `ws1`, "StartDelivery2" → `ws2`, invoking `send_goal` only if the requested tag differs from 
-        `current_goal_tag`.
-        
-        d) The send_goal(pos_xyz, tag) method converts the [x, y, yaw_deg] tuple into a PoseStamped (using quaternion_from_euler for the yaw), 
-        stamps it in the map frame with the current time, logs the outgoing goal, updates `current_goal_tag`, and calls `send_goal_async` with 
-        `feedback_cb` attached.
-        
-        e) The feedback and result callbacks handle the rest: `feedback_cb` logs the remaining distance, `goal_resp_cb` checks acceptance 
-        (resetting the tag on rejection and chaining `result_cb`), and `result_cb` logs success, cancellation or failure, then clears 
-        `current_goal_tag` so new goals can be sent.
+    a) The [`ttb_nav.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py) 
+    defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to `/turtlebot_state` 
+    commands and translates them into Nav2 NavigateToPose goals.
+
+    b) It retrieves three parameters `origin_pos`, `ws1_pos`, `ws2_pos` as [x, y, yaw_deg] from [`ttb_pos_point.yaml`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/config/ttb_pos_point.yaml), logs 
+    these goal positions, initializes an ActionClient for the `navigate_to_pose` action server, and subscribes to `/turtlebot_state`, while 
+    tracking the last sent goal with `current_goal_tag`.
+
+    c) The state_cb callback strips and logs each incoming state string, ignores `Idle` or `AtLoad`, then maps "StartReturn"/"Origin" → 
+    `origin`, "StartDelivery1" → `ws1`, "StartDelivery2" → `ws2`, invoking `send_goal` only if the requested tag differs from 
+    `current_goal_tag`.
+
+    d) The send_goal(pos_xyz, tag) method converts the [x, y, yaw_deg] tuple into a PoseStamped (using quaternion_from_euler for the yaw), 
+    stamps it in the map frame with the current time, logs the outgoing goal, updates `current_goal_tag`, and calls `send_goal_async` with 
+    `feedback_cb` attached.
+
+    e) The feedback and result callbacks handle the rest: `feedback_cb` logs the remaining distance, `goal_resp_cb` checks acceptance 
+    (resetting the tag on rejection and chaining `result_cb`), and `result_cb` logs success, cancellation or failure, then clears 
+    `current_goal_tag` so new goals can be sent.
