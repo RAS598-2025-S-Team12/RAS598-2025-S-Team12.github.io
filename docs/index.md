@@ -153,5 +153,22 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
    
 2. UR5 Robotic Arm
  
-4. Turtlebot State Machine
-5. Turtlebot Navigation
+3. Turtlebot State Machine
+
+   a) The [`turtlebot_state.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/turtlebot_state.py) defines a TurtleBotState class that inherits from rclpy.Node, containing 
+     the logic for monitoring and publishing the robot’s current action state.
+
+   b) It creates a publisher on `/turtlebot_state` and two subscribers—one to the same topic for echoing state updates 
+     (state_callback), and one to `/c3_14/cmd_vel` for velocity commands (vel_callback)—then initializes action_in_progress, zero_cmd_time, 
+     and a 1 Hz timer (check_arrival_condition).
+
+   c) The publish_state(text) method wraps text into a String message, publishes it, and logs the update; state_callback sets 
+     action_in_progress (“A”, “B” or None) based on incoming state strings.
+
+   d) The vel_callback watches for consecutive zero-velocity Twist messages during an active action, stamping the first zero-command time, 
+     while non-zero commands reset that timer.
+
+   e) Every second, check_arrival_condition checks if the robot has held zero velocity for more than 3 seconds during an action—if so, it 
+     publishes either “Arrived at A” or “Arrived at B” and then clears the action state.
+   
+6. Turtlebot Navigation
