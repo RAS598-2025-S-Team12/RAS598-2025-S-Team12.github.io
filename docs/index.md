@@ -171,4 +171,24 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
    e) Every second, check_arrival_condition checks if the robot has held zero velocity for more than 3 seconds during an action—if so, it 
      publishes either “Arrived at A” or “Arrived at B” and then clears the action state.
    
-6. Turtlebot Navigation
+4. Turtlebot Navigation
+
+   a) The [`ttb_nav.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py) 
+     defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to /turtlebot_state commands 
+     and translates them into Nav2 NavigateToPose goals.
+
+   b) It retrieves three parameters `origin_pos`, `ws1_pos`, `ws2_pos` as [x, y, yaw_deg] from [`ttb_pos_point.yaml`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/config/ttb_pos_point.yaml), logs 
+     these goal positions, initializes an ActionClient for the `navigate_to_pose` action server, and subscribes to `/turtlebot_state`, while 
+     tracking the last sent goal with `current_goal_tag`.
+
+   c) The state_cb callback strips and logs each incoming state string, ignores `Idle` or `AtLoad`, then maps "StartReturn"/"Origin" → 
+     `origin`, "StartDelivery1" → `ws1`, "StartDelivery2" → `ws2`, invoking `send_goal` only if the requested tag differs from 
+     `current_goal_tag`.
+
+   d) The send_goal(pos_xyz, tag) method converts the [x, y, yaw_deg] tuple into a PoseStamped (using quaternion_from_euler for the yaw), 
+     stamps it in the map frame with the current time, logs the outgoing goal, updates `current_goal_tag`, and calls `send_goal_async` with 
+     `feedback_cb` attached.
+
+   e) The feedback and result callbacks handle the rest: `feedback_cb` logs the remaining distance, `goal_resp_cb` checks acceptance 
+     (resetting the tag on rejection and chaining `result_cb`), and `result_cb` logs success, cancellation or failure, then clears 
+     `current_goal_tag` so new goals can be sent.
