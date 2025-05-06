@@ -1097,7 +1097,40 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
       a moving-average filter to the latest N samples before redrawing the acceleration graph.</p>
 <ol>
 <li>
-<p>UR5 Robotic Arm</p>
+<p>UR5 ROS2 Control Node:
+        a) The ROS2 nodes, implemented in Python, include:
+           move_to_position.py: sends trajectory commands to control robot motion.
+           get_position.py: subscribes and monitors robot joint states and end-effector poses.</p>
+<pre><code>b) Publishers and subscribers involved:
+   Publishes JointTrajectory messages to /scaled_joint_trajectory_controller/joint_trajectory.
+   Subscribes to /joint_states for joint angles.
+   Subscribes to /tcp_pose_broadcaster/pose for end-effector position feedback.
+
+c) Motion strategy:
+   Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.
+   Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.
+
+d) Feedback system:
+   Continuously monitors joint angles and end-effector positions.
+   Ensures closed-loop accuracy for task execution.
+</code></pre>
+</li>
+<li>
+<p>URSim Simulation and Physical Robot Operation:
+        a) Validation environment:
+           Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.</p>
+<pre><code>b) Physical hardware constraints:
+   Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.
+
+c) Alternative solution implemented:
+   URP control script (ur5_control.urp) pre-developed.
+   Python script (load_and_run_script.py) communicates with robot via Dashboard server.
+
+d) Python script functionality:
+   Establishes TCP socket connection to robot Dashboard server.
+   Loads and executes predefined URP program.
+   Enables coordinated robotic arm and gripper actions.
+</code></pre>
 </li>
 <li>
 <p>Turtlebot State Machine</p>
