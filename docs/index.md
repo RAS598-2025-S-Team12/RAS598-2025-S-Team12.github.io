@@ -134,9 +134,9 @@ b. Ensures closed-loop accuracy for task execution.<br>
 
 ## URSim & Physical Robot
 <ol><li>1. Validation environment:
-<ul>a. Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
+<ul><li>a. Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uVdeHsFNLeA?si=uVlgHfMbPelUGMhy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></ul></li>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uVdeHsFNLeA?si=uVlgHfMbPelUGMhy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></li></ul></li>
 
 <li>2. Physical hardware constraints:
 <ul><li>a. Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.</li></ul></li>
