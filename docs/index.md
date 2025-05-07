@@ -175,16 +175,17 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
     a) Validation environment:
         Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
-        <div align="center">
-        
-        <iframe width="560" height="315"
-                src="https://youtu.be/uVdeHsFNLeA?si=AKTBPaIzsqCfSYYi"
-                title="UR5 Robotic Arm Demo" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-        </iframe>
-        
-        </div>
+   
+<div align="center">
+
+<iframe width="560" height="315"
+        src="https://youtu.be/uVdeHsFNLeA?si=AKTBPaIzsqCfSYYi"
+        title="UR5 Robotic Arm Demo" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+</iframe>
+
+</div>
 
     b) Physical hardware constraints:
         Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.
@@ -193,20 +194,32 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
         URP control script (ur5_control.urp) pre-developed.
         Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.
 
+<div align="center">
+
+<iframe width="560" height="315"
+        src="https://youtu.be/_y8J7vZQI5s?si=e9wmHlcn-AyNhpha"
+        title="UR5 Robotic Arm Demo" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+</iframe>
+
+</div>
+
     d) Python script functionality:
         Establishes TCP socket connection to robot Dashboard server.
         Loads and executes predefined URP program.
         Enables coordinated robotic arm and gripper actions.
-        <div align="center">
         
-        <iframe width="560" height="315"
-                src="https://youtube.com/shorts/sF3xCx-4woE?si=fbdRCPHTF5H-K7mB"
-                title="UR5 Robotic Arm Demo" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-        </iframe>
-        
-        </div>
+<div align="center">
+
+<iframe width="560" height="315"
+        src="https://youtube.com/shorts/sF3xCx-4woE?si=fbdRCPHTF5H-K7mB"
+        title="UR5 Robotic Arm Demo" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+</iframe>
+
+</div>
  
 5. Turtlebot State Machine
 
