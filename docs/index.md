@@ -144,7 +144,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 ## URSim & Physical Robot
 <ol><li>Validation environment:
-<ul><li>Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
+<ul><li>Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.<br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uVdeHsFNLeA?si=uVlgHfMbPelUGMhy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></li></ul></li>
 
@@ -153,14 +153,14 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 <li>Alternative solution implemented:
 <ul><li>URP control script (ur5_control.urp) pre-developed.</li>
-<li>Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.
+<li>Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.<br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_y8J7vZQI5s?si=MiuTpfxab6QTnRho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></li></ul></li>
 
 <li>Python script functionality:
 <ul><li>Establishes TCP socket connection to robot Dashboard server.</li>
 <li>Loads and executes predefined URP program.</li>
-<li>Enables coordinated robotic arm and gripper actions.
+<li>Enables coordinated robotic arm and gripper actions.<br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RPhDaaa79vg" title="UR5 Robotic Arm Demo" frameborder="0" allowfullscreen></iframe></li></ul></li>
 </ol>
