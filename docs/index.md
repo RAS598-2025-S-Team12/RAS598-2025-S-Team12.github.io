@@ -19,7 +19,7 @@ tags:
 
 ---
 
-# II. Project Overview
+# II. Project Overview (Update 05/2025)
 
 ## Scope
 This project aims to develop an automated delivery system by integrating a UR5 robotic arm with a TurtleBot. Two workstations, A and B, will be set up alongside red and blue blocks. The UR5 arm will transfer the colored blocks onto the TurtleBot, which will then identify each block’s color and autonomously navigate to deliver it to the designated workstation. Through this integration, we seek to optimize the sorting and delivery workflow.
