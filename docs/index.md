@@ -169,7 +169,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
         Continuously monitors joint angles and end-effector positions.
         Ensures closed-loop accuracy for task execution.
 
-4. URSim Simulation and Physical Robot Operation:
+3. URSim Simulation and Physical Robot Operation:
 
     a) Validation environment:
         Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
@@ -186,7 +186,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
         Loads and executes predefined URP program.
         Enables coordinated robotic arm and gripper actions.
  
-5. Turtlebot State Machine
+4. Turtlebot State Machine
 
     a) The [`turtlebot_state.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/turtlebot_state.py) defines a TurtleBotState class 
     that inherits from rclpy.Node, containing 
@@ -205,7 +205,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
     e) Every second, check_arrival_condition checks if the robot has held zero velocity for more than 3 seconds during an action—if so, it 
     publishes either “Arrived at A” or “Arrived at B” and then clears the action state.
    
-6. Turtlebot Navigation
+5. Turtlebot Navigation
 
     a) The [`ttb_nav.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py) 
     defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to `/turtlebot_state` 
@@ -226,3 +226,39 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
     e) The feedback and result callbacks handle the rest: `feedback_cb` logs the remaining distance, `goal_resp_cb` checks acceptance 
     (resetting the tag on rejection and chaining `result_cb`), and `result_cb` logs success, cancellation or failure, then clears 
     `current_goal_tag` so new goals can be sent.
+
+
+#### Unresolved Tasks
+
+1. Create3 Platform Sensor Failure
+   
+   Issue:
+   The iRobot Create3 platform failed to initialize properly. As a result, essential ROS 2 topics such as /odom, /imu, and /scan were not published, thereby disabling key navigation and localization functionalities.
+
+   Attempted Solution:
+   To compensate for the missing /odom topic, we integrated the rf2o_laser_odometry package, which estimates odometry from LiDAR data. The following command was used to launch the package:
+        ros2 launch rf2o_laser_odometry rf2o_laser_odometry.launch.py laser_scan_topic:=/rpi_14/scan
+
+
+2. Missing /odom Frame in TF Tree
+
+   Issue:
+   Despite launching the odometry node, the /odom frame did not appear in the TF tree, which is essential for many localization and navigation stacks.
+
+   Attempted Solution:
+   We manually introduced a static transform using static_transform_publisher to bridge the missing transform between /odom and either rplidar_link or base_link:
+        ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 odom base_link
+
+   However, the /odom frame remained absent when verifying the TF tree using ros2 run tf2_tools view_frames.
+
+4. SLAM Frame Drift in RViz
+
+   Issue:
+   When executing SLAM through the turtlebot4_navigation stack, RViz showed growing drift between frames over time. This led to inconsistencies between the robot's estimated and actual positions, making localization unreliable.
+
+   Presumed Cause:
+   The drift likely stems from the fact that /odom was derived entirely from LiDAR-based odometry without integration of wheel encoders or IMU data.
+
+   Proposed Solution:
+   A potential remedy is to apply filtering to the LiDAR measurements—removing spurious (“garbage”) data—to improve the accuracy of the /odom estimation.
+
