@@ -194,22 +194,118 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 ---
 # Topic learned
 
-## UR5
+## UR5 Troubleshooting
+<ol>
+  <li>Controller initialization failure</li>
+    <ul>
+    <li>
+      Problem: Launching ur_control.launch.py resulted in the spawners being unable to contact /controller_manager/list_controllers, causing controller loading to fail.
+    </li>
+    <li>
+      Cause:
+      <ol>
+        <li>
+          ROS 2 relies on DDS discovery
+          <ul>
+            <li>
+              By default Cyclone DDS advertises every participant via UDP multicast (239.255.0.1:7400). When all processes can hear this packet they automatically discover each other and open the required service channels.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <AllowMulticast>false disables all multicast traffic
+            <ul>
+              <li>
+                With multicast blocked, discovery packets are neither sent nor received. Unless every peer (including the local host) is listed manually, different ROS 2 processes – even on the same machine – cannot see each other, so the spawner never finds /controller_manager/list_controllers.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <DontRoute>true sets the SO_DONTROUTE socket flag
+            <ul>
+              <li>
+                This forces Cyclone DDS to send only to directly-connected networks and to ignore any address that requires routing. In a VM or a host with several interfaces (loopback, bridge, etc.) this further prevents the participants from discovering each other.
+              </li>
+            </ul>
+          </li>
+          <li>
+            After both lines were commented out
+            <ul>
+              <li>
+                Multicast packets are allowed again → automatic discovery works.
+              </li>
+              <li>
+                Routing is permitted → packets can travel through the VM bridge and loopback.
+              </li>
+              <li>
+                Consequently, the spawner can reach /controller_manager/list_controllers, and the launch sequence completes successfully.
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>
+        Solution: These two lines were commented out to restore default multicast-based discovery, allowing the controllers to load successfully.
+      </li>  
+    </li>
+    </ul>
 
-| # | Issue | Symptom | Cause | Code Solution (Commands / Edits) |
-|---|-------|---------|-------|----------------------------------|
-| 1 | **Controller initialization failure** | Launching `ur_control.launch.py` cannot contact `/controller_manager/list_controllers`; controllers fail to load. | `<AllowMulticast>false</AllowMulticast>` and `<DontRoute>true</DontRoute>` in `cyclonedds.xml` block multicast discovery. | Comment‑out the two lines in `cyclonedds.xml` to restore multicast:<br>`<!-- <AllowMulticast>false</AllowMulticast> -->`<br>`<!-- <DontRoute>true</DontRoute> -->` |
-| 2 | **Real‑time scheduling not enabled** | Warning on launch: “Your system/user seems not to be setup for FIFO scheduling.” | POSIX real‑time group and limits are not configured. | ```bash\nsudo groupadd realtime\nsudo usermod -aG realtime $(whoami)\nsudo usermod -aG rtkit $(whoami)\ncat <<'EOF' | sudo tee /etc/security/limits.d/99-realtime.conf\n@realtime   - rtprio     99\n@realtime   - memlock    unlimited\n@realtime   - nice      -20\nEOF\nsudo reboot\n``` |
-| 3 | **Calibration data not applied** | Driver starts, but real robot pose deviates from MoveIt visualization. | `robot_calibration.yaml` missing or not applied. | ```ros2 launch ur_calibration calibration_correction.launch.py robot_ip:=<robot_ip>\n# sudo chmod a+w /opt/ros/humble/share/ur_calibration/robot_calibration.yaml\n``` |
+  <li>Real-time scheduling not enabled</li>
+    <ul>
+      <li>Warning: Your system/user seems not to be setup for FIFO scheduling.</li>
+      <li>Cause: By default, real-time scheduling is not enabled in Ubuntu, and the real-time group and related permissions are not set.</li>
+      <li>Solution:
+        <ol>
+          <li>
+            Add user to proper groups:
+            <ul>
+              <li>
+                sudo groupadd realtime<br>
+                sudo usermod -aG realtime $(whoami)<br>
+                sudo usermod -aG rtkit $(whoami)
+              </li>
+            </ul>
+          </li>
+          <li>
+            Create /etc/security/limits.d/99-realtime.conf with:
+            <ul>
+              <li>
+                @realtime   - rtprio     99  <br>
+                @realtime   - memlock    unlimited  <br>
+                @realtime   - nice      -20  
+              </li>
+            </ul>
+          </li>
+          <li>
+            Reboot system
+            <ul><li>sudo reboot</li></ul>
+          </li>
+          <li>
+            Verify group membership
+            <ul><li>groups $(whoami)</li></ul>
+          </li>
+        </ol>
+      </li>
+      </li>
+    </ul>
+  
+  <li>Calibration data not applied</li>
+    <ul>
+      <li>Problem: The robot driver starts, but the real robot’s pose may deviate from the MoveIt visualization.</li>
+      <li>Cause: The robot_calibration.yaml file is missing or not applied.</li>
+      <li>Solution:
+        <ol>
+          <li>
+            Run the calibration launch file:
+            <ul><li>ros2 launch ur_calibration calibration_correction.launch.py robot_ip:=<robot_ip>
+            </li></ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+              
 
-
-### Troubleshooting Matrix
-
-| # | Issue | Symptom | Cause | Code Solution (Commands / Edits) |
-|---|-------|---------|-------|----------------------------------|
-| 1 | **Controller initialization failure** | Launching `ur_control.launch.py` → spawners cannot contact `/controller_manager/list_controllers`; controllers fail to load | Multicast discovery blocked by `<AllowMulticast>false</AllowMulticast>` and `<DontRoute>true</DontRoute>` in `cyclonedds.xml` | ```bash\n# ‑‑‑ Backup & patch CycloneDDS config ‑‑‑\nCYCLONE_XML=/etc/ros/foxy/rmw_cyclonedds_cpp/cyclonedds.xml   # ← 路徑視安裝而定\nsudo cp \"$CYCLONE_XML\" \"${CYCLONE_XML}.bak\"\n# Comment‑out offending tags\nsudo sed -i -E '/<AllowMulticast>/,/<\\/AllowMulticast>/ s/^/<!-- /; /<\\/AllowMulticast>/ s/$/ -->/' \"$CYCLONE_XML\"\nsudo sed -i -E '/<DontRoute>/,/<\\/DontRoute>/ s/^/<!-- /; /<\\/DontRoute>/ s/$/ -->/' \"$CYCLONE_XML\"\n# Restart DDS‑using nodes / re‑launch ros2 workspace\n``` |
-| 2 | **Real‑time scheduling not enabled** | *Warning:* “Your system/user seems not to be setup for FIFO scheduling.” at node start‑up | User not in realtime groups; PAM limits missing | ```bash\n# ‑‑‑ Add user to realtime groups ‑‑‑\nsudo groupadd -f realtime\nsudo usermod -aG realtime,rtkit \"$(whoami)\"\n\n# ‑‑‑ Configure PAM limits ‑‑‑\ncat <<'EOF' | sudo tee /etc/security/limits.d/99-realtime.conf\n@realtime   - rtprio     99\n@realtime   - memlock    unlimited\n@realtime   - nice      -20\nEOF\n\n# ‑‑‑ Apply changes (log out / reboot) ‑‑‑\nsudo reboot\n``` |
-| 3 | **Calibration data not applied** | Driver runs, but physical UR5 pose drifts from MoveIt visualisation | `robot_calibration.yaml` missing or not writable | ```bash\n# ‑‑‑ Generate / update calibration file ‑‑‑\nros2 launch ur_calibration calibration_correction.launch.py robot_ip:=<ROBOT_IP>\n\n# If installed via apt, ensure write permission so launch‑file can save YAML:\nsudo chmod a+w /opt/ros/humble/share/ur_calibration/robot_calibration.yaml\n``` |
+</ol>
 
 
 
