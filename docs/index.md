@@ -118,39 +118,49 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 5. Callback methods (odom_callback, imu_callback) update velocity displays and append IMU samples to a rolling buffer; update_plot applies a moving-average filter to the latest N samples before redrawing the acceleration graph.<br>
 
 ## UR5 Control Nodes
-1. The ROS2 nodes, implemented in Python, include:<br>
-a. [`move_to_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py): sends trajectory commands to control robot motion.<br>
-b. [`get_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py): subscribes and monitors robot joint states and end-effector poses.<br>
-2. Publishers and subscribers involved:<br>
-a. Publishes JointTrajectory messages to `/scaled_joint_trajectory_controller/joint_trajectory`.<br>
-b. Subscribes to `/joint_states for joint angles`.<br>
-c. Subscribes to `/tcp_pose_broadcaster/pose` for end-effector position feedback.<br>
-3. Motion strategy:<br>
-a. Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.<br>
-b. Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.<br>
-4. Feedback system:<br>
-a. Continuously monitors joint angles and end-effector positions.<br>
-b. Ensures closed-loop accuracy for task execution.<br>
+<ol>
+  <li>The ROS2 nodes, implemented in Python, include:</li>
+    <ul>
+      <li>[`move_to_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py): sends trajectory commands to control robot motion.</li>
+      <li>[`get_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py): subscribes and monitors robot joint states and end-effector poses.</li>
+    </ul>
+  <li>Publishers and subscribers involved:</li>
+    <ul>
+      <li>Publishes JointTrajectory messages to `/scaled_joint_trajectory_controller/joint_trajectory`.</li>
+      <li>Subscribes to `/joint_states for joint angles`.</li>
+      <li>Subscribes to `/tcp_pose_broadcaster/pose` for end-effector position feedback.</li>
+    </ul>
+  <li>Motion strategy:</li>
+    <ul>
+      <li>Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.</li>
+      <li>Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.</li>
+    </ul>
+  <li>Feedback system:</li>
+    <ul>
+      <li>Continuously monitors joint angles and end-effector positions.</li>
+      <li>Ensures closed-loop accuracy for task execution.</li>
+    </ul>
+</ol>
 
 ## URSim & Physical Robot
-<ol><li>1. Validation environment:
-<ul><li>a. Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
+<ol><li>Validation environment:
+<ul><li>Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uVdeHsFNLeA?si=uVlgHfMbPelUGMhy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></li></ul></li>
 
-<li>2. Physical hardware constraints:
-<ul><li>a. Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.</li></ul></li>
+<li>Physical hardware constraints:
+<ul><li>Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.</li></ul></li>
 
-<li>3. Alternative solution implemented:
-<ul><li>a. URP control script (ur5_control.urp) pre-developed.</li>
-<li>b. Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.
+<li>Alternative solution implemented:
+<ul><li>URP control script (ur5_control.urp) pre-developed.</li>
+<li>Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_y8J7vZQI5s?si=MiuTpfxab6QTnRho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></li></ul></li>
 
-<li>4. Python script functionality:
-<ul><li>a. Establishes TCP socket connection to robot Dashboard server.</li>
-<li>b. Loads and executes predefined URP program.</li>
-<li>c. Enables coordinated robotic arm and gripper actions.
+<li>Python script functionality:
+<ul><li>Establishes TCP socket connection to robot Dashboard server.</li>
+<li>Loads and executes predefined URP program.</li>
+<li>Enables coordinated robotic arm and gripper actions.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RPhDaaa79vg" title="UR5 Robotic Arm Demo" frameborder="0" allowfullscreen></iframe></li></ul></li>
 </ol>
