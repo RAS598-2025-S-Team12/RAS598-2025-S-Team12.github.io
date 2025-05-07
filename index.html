@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduction" class="md-skip">
+        <a href="#i-introduction" class="md-skip">
           Skip to content
         </a>
       
@@ -408,7 +408,7 @@
   
 
 
-<h1 id="introduction">Introduction</h1>
+<h1 id="i-introduction">I. Introduction</h1>
 <ul>
 <li><strong>Project</strong>: Automatic Delivery Turtlebot Systems  </li>
 <li><strong>Team</strong>: 12  </li>
@@ -419,7 +419,7 @@
 <li><strong>Instructor</strong>: Prof. Daniel M. Aukes  </li>
 </ul>
 <hr />
-<h1 id="project-overview">Project Overview</h1>
+<h1 id="ii-project-overview">II. Project Overview</h1>
 <h2 id="scope">Scope</h2>
 <p>This project aims to develop an automated delivery system by integrating a UR5 robotic arm with a TurtleBot. Two workstations, A and B, will be set up alongside red and blue blocks. The UR5 arm will transfer the colored blocks onto the TurtleBot, which will then identify each block’s color and autonomously navigate to deliver it to the designated workstation. Through this integration, we seek to optimize the sorting and delivery workflow.</p>
 <h2 id="data-acquisition-filtering">Data Acquisition &amp; Filtering</h2>
@@ -441,7 +441,7 @@
 </ol>
 <p>To build the system, we need to understand how communication between UR5 and TurtleBot 4 works. Choosing the most suitable path-planning algorithm is crucial for efficient TurtleBot 4 navigation and minimizing delivery time. Lastly, integrating useful Python packages like OpenCV for object detection will enhance the system's capabilities.</p>
 <hr />
-<h1 id="final-demonstration">Final Demonstration</h1>
+<h1 id="iii-resources-evaluation-plan">III. Resources &amp; Evaluation Plan</h1>
 <h2 id="resources-required">Resources Required</h2>
 <ul>
 <li>UR5 arm &amp; TurtleBot 4</li>
@@ -467,7 +467,7 @@
 <h1 id="advising">Advising</h1>
 <p>Dr. Aukes serves as our advisor for this project, providing technical guidance and hardware support. With his expertise in ROS2 development, robotic motion planning, and control systems, he plays a crucial role in helping us navigate the technical challenges of integrating the UR5 robotic arm and Turtlebot. Additionally, we plan to seek further technical guidance from other experts in the field to ensure the success of our project.</p>
 <hr />
-<h1 id="project-progress">Project Progress</h1>
+<h1 id="iv-project-progress">IV. Project Progress</h1>
 <h2 id="achievements">Achievements</h2>
 <h3 id="1-ur5-pickandplace">1 UR5 Pick‑and‑Place</h3>
 <p><em>We successfully implemented control over the UR5 robotic arm, enabling it to perform pick-and-place tasks from point A to point B.</em></p>
@@ -494,7 +494,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 <li>Full system validation.</li>
 </ol>
 <hr />
-<h1 id="code-breakdown">Code Breakdown</h1>
+<h1 id="v-code-breakdown">V. Code Breakdown</h1>
 <h2 id="gui-guipy">GUI (<code>gui.py</code>)</h2>
 <ol>
 <li>The <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py"><code>gui.py</code></a>, defines a TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.<br></li>
@@ -579,7 +579,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 <li>The feedback and result callbacks handle the rest: <code>feedback_cb</code> logs the remaining distance, <code>goal_resp_cb</code> checks acceptance (resetting the tag on rejection and chaining <code>result_cb</code>), and <code>result_cb</code> logs success, cancellation or failure, then clears <code>current_goal_tag</code> so new goals can be sent.</li>
 </ol>
 <hr />
-<h1 id="topic-learned">Topic learned</h1>
+<h1 id="vi-topic-learned">VI. Topic learned</h1>
 <h2 id="ur5-troubleshooting">UR5 Troubleshooting</h2>
 <ol>
   <li>Controller initialization failure</li>
@@ -694,7 +694,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 </ol>
 
 <hr />
-<h1 id="unresolved-tasks">Unresolved Tasks</h1>
+<h1 id="vii-unresolved-tasks">VII. Unresolved Tasks</h1>
 <table>
 <thead>
 <tr>
