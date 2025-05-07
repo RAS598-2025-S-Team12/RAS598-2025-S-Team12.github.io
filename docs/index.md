@@ -5,7 +5,7 @@ tags:
   - tag2
 ---
 
-# Introduction
+# I. Introduction
 
 - **Project**: Automatic Delivery Turtlebot Systems  
 - **Team**: 12  
@@ -17,7 +17,7 @@ tags:
 
 ---
 
-# Project Overview
+# II. Project Overview
 
 ## Scope
 This project aims to develop an automated delivery system by integrating a UR5 robotic arm with a TurtleBot. Two workstations, A and B, will be set up alongside red and blue blocks. The UR5 arm will transfer the colored blocks onto the TurtleBot, which will then identify each block’s color and autonomously navigate to deliver it to the designated workstation. Through this integration, we seek to optimize the sorting and delivery workflow.
@@ -44,7 +44,7 @@ To build the system, we need to understand how communication between UR5 and Tur
 
 ---
 
-# Final Demonstration
+# III. Resources & Evaluation Plan
 
 ## Resources Required
 - UR5 arm & TurtleBot 4
@@ -73,7 +73,7 @@ Dr. Aukes serves as our advisor for this project, providing technical guidance a
 
 ---
 
-# Project Progress
+# IV. Project Progress
 
 ## Achievements
 
@@ -108,7 +108,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 ---
 
-# Code Breakdown
+# V. Code Breakdown
 
 ## GUI (`gui.py`)
 1. The [`gui.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py), defines a TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.<br>
@@ -192,7 +192,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 5. The feedback and result callbacks handle the rest: `feedback_cb` logs the remaining distance, `goal_resp_cb` checks acceptance (resetting the tag on rejection and chaining `result_cb`), and `result_cb` logs success, cancellation or failure, then clears `current_goal_tag` so new goals can be sent.
 
 ---
-# Topic learned
+# VI. Topic learned
 
 ## UR5 Troubleshooting
 <ol>
@@ -311,7 +311,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 ---
 
-# Unresolved Tasks
+# VII. Unresolved Tasks
 
 | # | Issue | Problem Description | Attempted / Proposed Solution |
 |---|-------|--------------------|--------------------------------|
