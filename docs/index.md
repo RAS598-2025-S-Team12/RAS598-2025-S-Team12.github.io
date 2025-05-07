@@ -89,10 +89,12 @@ Dr. Aukes serves as our advisor for this project, providing technical guidance a
 
 <img src="./images/rqt_graph.jpg" alt="rqt_graph" width="600">
 
-
+<img src="./images/gui_cmd_flowchart.png" alt="gui_cmd_flowchart" width="600">
 
 ### 4 Pre‑defined Actions
 *We successfully enabled the TurtleBot to execute predefined actions. When button A is pressed, it moves forward 3 meters and then turns left for 1 meter; when button B is pressed, it moves forward 3 meters and then turns right for 1 meter.*
+
+<img src="./images/gui_program_flowchart.png" alt="gui_program_flowchart" width="600">
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AvNOWas0qkQ" title="Pre‑defined Actions" frameborder="0" allowfullscreen></iframe>
 
