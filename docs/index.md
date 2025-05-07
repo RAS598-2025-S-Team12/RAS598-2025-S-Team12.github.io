@@ -133,27 +133,27 @@ a. Continuously monitors joint angles and end-effector positions.<br>
 b. Ensures closed-loop accuracy for task execution.<br>
 
 ## URSim & Physical Robot
-1. Validation environment:<br>
-a. Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.<br>
+<ol><li>1. Validation environment:
+<ul>a. Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uVdeHsFNLeA?si=uVlgHfMbPelUGMhy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uVdeHsFNLeA?si=uVlgHfMbPelUGMhy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></ul></li>
 
-2. Physical hardware constraints:<br>
-a. Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.<br>
+<li>2. Physical hardware constraints:
+<ul><li>a. Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.</li></ul></li>
 
-3. Alternative solution implemented:<br>
-a. URP control script (ur5_control.urp) pre-developed.<br>
-b. Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.<br>
+<li>3. Alternative solution implemented:
+<ul><li>a. URP control script (ur5_control.urp) pre-developed.</li>
+<li>b. Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_y8J7vZQI5s?si=MiuTpfxab6QTnRho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_y8J7vZQI5s?si=MiuTpfxab6QTnRho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></li></ul></li>
 
-4. Python script functionality:<br>
-a. Establishes TCP socket connection to robot Dashboard server.<br>
-b. Loads and executes predefined URP program.<br>
-c. Enables coordinated robotic arm and gripper actions.<br>
+<li>4. Python script functionality:
+<ul><li>a. Establishes TCP socket connection to robot Dashboard server.</li>
+<li>b. Loads and executes predefined URP program.</li>
+<li>c. Enables coordinated robotic arm and gripper actions.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/RPhDaaa79vg" title="UR5 Robotic Arm Demo" frameborder="0" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RPhDaaa79vg" title="UR5 Robotic Arm Demo" frameborder="0" allowfullscreen></iframe></li></ul></li>
+</ol>
 
 
 ## TurtleBot State Machine (`turtlebot_state.py`)
