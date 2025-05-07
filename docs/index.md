@@ -119,18 +119,18 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 ## UR5 Control Nodes
 1. The ROS2 nodes, implemented in Python, include:<br>
-  - [`move_to_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py): sends trajectory commands to control robot motion.<br>
-  - [`get_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py): subscribes and monitors robot joint states and end-effector poses.<br>
+a. [`move_to_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py): sends trajectory commands to control robot motion.<br>
+b. [`get_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py): subscribes and monitors robot joint states and end-effector poses.<br>
 2. Publishers and subscribers involved:<br>
-  - Publishes JointTrajectory messages to `/scaled_joint_trajectory_controller/joint_trajectory`.<br>
-  - Subscribes to `/joint_states for joint angles`.<br>
-  - Subscribes to `/tcp_pose_broadcaster/pose` for end-effector position feedback.<br>
+a. Publishes JointTrajectory messages to `/scaled_joint_trajectory_controller/joint_trajectory`.<br>
+b. Subscribes to `/joint_states for joint angles`.<br>
+c. Subscribes to `/tcp_pose_broadcaster/pose` for end-effector position feedback.<br>
 3. Motion strategy:<br>
-  - Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.<br>
-  - Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.<br>
+a. Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.<br>
+b. Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.<br>
 4. Feedback system:<br>
-- Continuously monitors joint angles and end-effector positions.<br>
-- Ensures closed-loop accuracy for task execution.<br>
+a. Continuously monitors joint angles and end-effector positions.<br>
+b. Ensures closed-loop accuracy for task execution.<br>
 
 ## URSim & Physical Robot
 1. Validation environment:<br>
