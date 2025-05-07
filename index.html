@@ -505,19 +505,19 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 </ol>
 <h2 id="ur5-control-nodes">UR5 Control Nodes</h2>
 <ol>
-<li>The ROS2 nodes, implemented in Python, include:<br></li>
-<li><a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py"><code>move_to_position.py</code></a>: sends trajectory commands to control robot motion.<br></li>
-<li><a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py"><code>get_position.py</code></a>: subscribes and monitors robot joint states and end-effector poses.<br></li>
-<li>Publishers and subscribers involved:<br></li>
-<li>Publishes JointTrajectory messages to <code>/scaled_joint_trajectory_controller/joint_trajectory</code>.<br></li>
-<li>Subscribes to <code>/joint_states for joint angles</code>.<br></li>
-<li>Subscribes to <code>/tcp_pose_broadcaster/pose</code> for end-effector position feedback.<br></li>
-<li>Motion strategy:<br></li>
-<li>Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.<br></li>
-<li>Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.<br></li>
-<li>Feedback system:<br></li>
-<li>Continuously monitors joint angles and end-effector positions.<br></li>
-<li>Ensures closed-loop accuracy for task execution.<br></li>
+<li>The ROS2 nodes, implemented in Python, include:<br>
+a. <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py"><code>move_to_position.py</code></a>: sends trajectory commands to control robot motion.<br>
+b. <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py"><code>get_position.py</code></a>: subscribes and monitors robot joint states and end-effector poses.<br></li>
+<li>Publishers and subscribers involved:<br>
+a. Publishes JointTrajectory messages to <code>/scaled_joint_trajectory_controller/joint_trajectory</code>.<br>
+b. Subscribes to <code>/joint_states for joint angles</code>.<br>
+c. Subscribes to <code>/tcp_pose_broadcaster/pose</code> for end-effector position feedback.<br></li>
+<li>Motion strategy:<br>
+a. Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.<br>
+b. Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.<br></li>
+<li>Feedback system:<br>
+a. Continuously monitors joint angles and end-effector positions.<br>
+b. Ensures closed-loop accuracy for task execution.<br></li>
 </ol>
 <h2 id="ursim-physical-robot">URSim &amp; Physical Robot</h2>
 <ol>
