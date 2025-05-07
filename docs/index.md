@@ -121,8 +121,16 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 <ol>
   <li>The ROS2 nodes, implemented in Python, include:</li>
     <ul>
-      <li>[`move_to_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py): sends trajectory commands to control robot motion.</li>
-      <li>[`get_position.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py): subscribes and monitors robot joint states and end-effector poses.</li>
+    <li>
+      <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py">
+        <code>move_to_position.py</code>
+      </a>：sends trajectory commands to control robot motion.
+    </li>
+    <li>
+      <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py">
+        <code>get_position.py</code>
+      </a>：subscribes and monitors robot joint states and end‑effector poses.
+    </li>
     </ul>
   <li>Publishers and subscribers involved:</li>
     <ul>
@@ -153,7 +161,10 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 <li>Alternative solution implemented:
 <ul><li>URP control script (ur5_control.urp) pre-developed.</li>
-<li>Python script [`load_and_run_script.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py) communicates with robot via Dashboard server.<br>
+<li>
+  <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py">
+    <code>load_and_run_script.py</code>
+  </a>：communicates with robot via Dashboard&nbsp;server.<br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_y8J7vZQI5s?si=MiuTpfxab6QTnRho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></li></ul></li>
 
