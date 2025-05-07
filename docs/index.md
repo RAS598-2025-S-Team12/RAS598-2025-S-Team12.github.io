@@ -239,32 +239,32 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 1. Create3 Platform Sensor Failure
    
-           - Issue:
-           The iRobot Create3 platform failed to initialize properly. As a result, essential ROS 2 topics such as /odom, /imu, and /scan were not published, thereby disabling key navigation and localization functionalities.
+    - Issue:
+      The iRobot Create3 platform failed to initialize properly. As a result, essential ROS 2 topics such as /odom, /imu, and /scan were not published, thereby disabling key navigation and localization functionalities.
 
-           - Attempted Solution:
-           To compensate for the missing /odom topic, we integrated the rf2o_laser_odometry package, which estimates odometry from LiDAR data. The following command was used to launch the package:
-        ros2 launch rf2o_laser_odometry rf2o_laser_odometry.launch.py laser_scan_topic:=/rpi_14/scan
+    - Attempted Solution:
+    To compensate for the missing /odom topic, we integrated the rf2o_laser_odometry package, which estimates odometry from LiDAR data. The following command was used to launch the package:
+            ros2 launch rf2o_laser_odometry rf2o_laser_odometry.launch.py laser_scan_topic:=/rpi_14/scan
 
 
 2. Missing /odom Frame in TF Tree
 
-           - Issue:
-           Despite launching the odometry node, the /odom frame did not appear in the TF tree, which is essential for many localization and navigation stacks.
+    - Issue:
+    Despite launching the odometry node, the /odom frame did not appear in the TF tree, which is essential for many localization and navigation stacks.
 
-           - Attempted Solution:
-           We manually introduced a static transform using static_transform_publisher to bridge the missing transform between /odom and either rplidar_link or base_link:
-                ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 odom base_link
-           However, the /odom frame remained absent when verifying the TF tree using ros2 run tf2_tools view_frames.
+    - Attempted Solution:
+    We manually introduced a static transform using static_transform_publisher to bridge the missing transform between /odom and either rplidar_link or base_link:
+         ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 odom base_link
+    However, the /odom frame remained absent when verifying the TF tree using ros2 run tf2_tools view_frames.
 
 4. SLAM Frame Drift in RViz
 
-           - Issue:
-           When executing SLAM through the turtlebot4_navigation stack, RViz showed growing drift between frames over time. This led to inconsistencies between the robot's estimated and actual positions, making localization unreliable.
+     - Issue:
+     When executing SLAM through the turtlebot4_navigation stack, RViz showed growing drift between frames over time. This led to inconsistencies between the robot's estimated and actual positions, making localization unreliable.
 
-           - Presumed Cause:
-           The drift likely stems from the fact that /odom was derived entirely from LiDAR-based odometry without integration of wheel encoders or IMU data.
+      - Presumed Cause:
+     The drift likely stems from the fact that /odom was derived entirely from LiDAR-based odometry without integration of wheel encoders or IMU data.
 
-           - Proposed Solution:
-           A potential remedy is to apply filtering to the LiDAR measurements—removing spurious (“garbage”) data—to improve the accuracy of the /odom estimation.
+     - Proposed Solution:
+    A potential remedy is to apply filtering to the LiDAR measurements—removing spurious (“garbage”) data—to improve the accuracy of the /odom estimation.
 
