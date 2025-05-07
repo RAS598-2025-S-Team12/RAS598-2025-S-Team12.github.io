@@ -521,29 +521,29 @@ b. Ensures closed-loop accuracy for task execution.<br></li>
 </ol>
 <h2 id="ursim-physical-robot">URSim &amp; Physical Robot</h2>
 <ol>
-<li>Validation environment:<br></li>
-<li>Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.<br></li>
+<li>Validation environment:<br>
+a. Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.<br></li>
 </ol>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uVdeHsFNLeA?si=uVlgHfMbPelUGMhy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <ol>
-<li>Physical hardware constraints:<br></li>
 <li>
-<p>Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.<br></p>
+<p>Physical hardware constraints:<br>
+a. Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.<br></p>
 </li>
 <li>
-<p>Alternative solution implemented:<br></p>
+<p>Alternative solution implemented:<br>
+a. URP control script (ur5_control.urp) pre-developed.<br>
+b. Python script <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py"><code>load_and_run_script.py</code></a> communicates with robot via Dashboard server.<br></p>
 </li>
-<li>URP control script (ur5_control.urp) pre-developed.<br></li>
-<li>Python script <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py"><code>load_and_run_script.py</code></a> communicates with robot via Dashboard server.<br></li>
 </ol>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_y8J7vZQI5s?si=MiuTpfxab6QTnRho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <ol>
-<li>Python script functionality:<br></li>
-<li>Establishes TCP socket connection to robot Dashboard server.<br></li>
-<li>Loads and executes predefined URP program.<br></li>
-<li>Enables coordinated robotic arm and gripper actions.<br></li>
+<li>Python script functionality:<br>
+a. Establishes TCP socket connection to robot Dashboard server.<br>
+b. Loads and executes predefined URP program.<br>
+c. Enables coordinated robotic arm and gripper actions.<br></li>
 </ol>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RPhDaaa79vg" title="UR5 Robotic Arm Demo" frameborder="0" allowfullscreen></iframe>
 
