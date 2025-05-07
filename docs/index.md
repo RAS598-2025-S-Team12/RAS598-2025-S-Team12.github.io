@@ -178,20 +178,50 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 
 ## TurtleBot State Machine (`turtlebot_state.py`)
-Publishes `/turtlebot_state`; detects arrival by monitoring zero velocity.
+1. The [`turtlebot_state.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/turtlebot_state.py) defines a TurtleBotState class that inherits from rclpy.Node, containing the logic for monitoring and publishing the robot’s current action state.
+2. It creates a publisher on `/turtlebot_state` and two subscribers—one to the same topic for echoing state updates (state_callback), and one to `/c3_14/cmd_vel` for velocity commands (vel_callback)—then initializes action_in_progress, zero_cmd_time, and a 1 Hz timer (check_arrival_condition).
+3. The publish_state(text) method wraps text into a String message, publishes it, and logs the update; state_callback sets action_in_progress (“A”, “B” or None) based on incoming state strings.
+4. The vel_callback watches for consecutive zero-velocity Twist messages during an active action, stamping the first zero-command time, while non-zero commands reset that timer.
+5. Every second, check_arrival_condition checks if the robot has held zero velocity for more than 3 seconds during an action—if so, it publishes either “Arrived at A” or “Arrived at B” and then clears the action state.
 
 ## Navigation State Machine (`ttb_nav.py`)
-Translates high‑level states into `navigate_to_pose` goals; feedback‑aware.
+1. The [`ttb_nav.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py) defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to `/turtlebot_state` commands and translates them into Nav2 NavigateToPose goals.
+2. It retrieves three parameters `origin_pos`, `ws1_pos`, `ws2_pos` as [x, y, yaw_deg] from [`ttb_pos_point.yaml`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/config/ttb_pos_point.yaml), logs these goal positions, initializes an ActionClient for the `navigate_to_pose` action server, and subscribes to `/turtlebot_state`, while tracking the last sent goal with `current_goal_tag`.
+3. The state_cb callback strips and logs each incoming state string, ignores `Idle` or `AtLoad`, then maps "StartReturn"/"Origin" → `origin`, "StartDelivery1" → `ws1`, "StartDelivery2" → `ws2`, invoking `send_goal` only if the requested tag differs from `current_goal_tag`.
+4. The send_goal(pos_xyz, tag) method converts the [x, y, yaw_deg] tuple into a PoseStamped (using quaternion_from_euler for the yaw), stamps it in the map frame with the current time, logs the outgoing goal, updates `current_goal_tag`, and calls `send_goal_async` with `feedback_cb` attached.
+5. The feedback and result callbacks handle the rest: `feedback_cb` logs the remaining distance, `goal_resp_cb` checks acceptance (resetting the tag on rejection and chaining `result_cb`), and `result_cb` logs success, cancellation or failure, then clears `current_goal_tag` so new goals can be sent.
+
+---
+# Topic learned
+
+## UR5
+
+| # | Issue | Symptom | Cause | Code Solution (Commands / Edits) |
+|---|-------|---------|-------|----------------------------------|
+| 1 | **Controller initialization failure** | Launching `ur_control.launch.py` cannot contact `/controller_manager/list_controllers`; controllers fail to load. | `<AllowMulticast>false</AllowMulticast>` and `<DontRoute>true</DontRoute>` in `cyclonedds.xml` block multicast discovery. | Comment‑out the two lines in `cyclonedds.xml` to restore multicast:<br>`<!-- <AllowMulticast>false</AllowMulticast> -->`<br>`<!-- <DontRoute>true</DontRoute> -->` |
+| 2 | **Real‑time scheduling not enabled** | Warning on launch: “Your system/user seems not to be setup for FIFO scheduling.” | POSIX real‑time group and limits are not configured. | ```bash\nsudo groupadd realtime\nsudo usermod -aG realtime $(whoami)\nsudo usermod -aG rtkit $(whoami)\ncat <<'EOF' | sudo tee /etc/security/limits.d/99-realtime.conf\n@realtime   - rtprio     99\n@realtime   - memlock    unlimited\n@realtime   - nice      -20\nEOF\nsudo reboot\n``` |
+| 3 | **Calibration data not applied** | Driver starts, but real robot pose deviates from MoveIt visualization. | `robot_calibration.yaml` missing or not applied. | ```ros2 launch ur_calibration calibration_correction.launch.py robot_ip:=<robot_ip>\n# sudo chmod a+w /opt/ros/humble/share/ur_calibration/robot_calibration.yaml\n``` |
+
+
+### Troubleshooting Matrix
+
+| # | Issue | Symptom | Cause | Code Solution (Commands / Edits) |
+|---|-------|---------|-------|----------------------------------|
+| 1 | **Controller initialization failure** | Launching `ur_control.launch.py` → spawners cannot contact `/controller_manager/list_controllers`; controllers fail to load | Multicast discovery blocked by `<AllowMulticast>false</AllowMulticast>` and `<DontRoute>true</DontRoute>` in `cyclonedds.xml` | ```bash\n# ‑‑‑ Backup & patch CycloneDDS config ‑‑‑\nCYCLONE_XML=/etc/ros/foxy/rmw_cyclonedds_cpp/cyclonedds.xml   # ← 路徑視安裝而定\nsudo cp \"$CYCLONE_XML\" \"${CYCLONE_XML}.bak\"\n# Comment‑out offending tags\nsudo sed -i -E '/<AllowMulticast>/,/<\\/AllowMulticast>/ s/^/<!-- /; /<\\/AllowMulticast>/ s/$/ -->/' \"$CYCLONE_XML\"\nsudo sed -i -E '/<DontRoute>/,/<\\/DontRoute>/ s/^/<!-- /; /<\\/DontRoute>/ s/$/ -->/' \"$CYCLONE_XML\"\n# Restart DDS‑using nodes / re‑launch ros2 workspace\n``` |
+| 2 | **Real‑time scheduling not enabled** | *Warning:* “Your system/user seems not to be setup for FIFO scheduling.” at node start‑up | User not in realtime groups; PAM limits missing | ```bash\n# ‑‑‑ Add user to realtime groups ‑‑‑\nsudo groupadd -f realtime\nsudo usermod -aG realtime,rtkit \"$(whoami)\"\n\n# ‑‑‑ Configure PAM limits ‑‑‑\ncat <<'EOF' | sudo tee /etc/security/limits.d/99-realtime.conf\n@realtime   - rtprio     99\n@realtime   - memlock    unlimited\n@realtime   - nice      -20\nEOF\n\n# ‑‑‑ Apply changes (log out / reboot) ‑‑‑\nsudo reboot\n``` |
+| 3 | **Calibration data not applied** | Driver runs, but physical UR5 pose drifts from MoveIt visualisation | `robot_calibration.yaml` missing or not writable | ```bash\n# ‑‑‑ Generate / update calibration file ‑‑‑\nros2 launch ur_calibration calibration_correction.launch.py robot_ip:=<ROBOT_IP>\n\n# If installed via apt, ensure write permission so launch‑file can save YAML:\nsudo chmod a+w /opt/ros/humble/share/ur_calibration/robot_calibration.yaml\n``` |
+
+
 
 ---
 
 # Unresolved Tasks
 
-| # | Issue | Attempted / Proposed Solution |
-|---|-------|--------------------------------|
-| 1 | **Create 3 Sensor Failure** – `/odom`, `/imu`, `/scan` absent | Launched `rf2o_laser_odometry` to compute odom from LiDAR. |
-| 2 | **Missing `/odom` TF Frame** | Broadcast static transform: `static_transform_publisher 0 0 0 0 0 0 odom base_link`; frame still missing. |
-| 3 | **SLAM Frame Drift** | Suspected LiDAR‑only odom causing drift; plan to filter LiDAR data and fuse encoder/IMU inputs. |
+| # | Issue | Problem Description | Attempted / Proposed Solution |
+|---|-------|--------------------|--------------------------------|
+| 1 | **Create 3 Platform Sensor Failure** – `/odom`, `/imu`, `/scan` not published | The iRobot Create 3 platform failed to initialize properly. As a result, essential ROS 2 topics such as `/odom`, `/imu`, and `/scan` were not published, thereby disabling key navigation and localization functionalities. | Integrated the `rf2o_laser_odometry` package to estimate odometry from LiDAR data:<br>`ros2 launch rf2o_laser_odometry rf2o_laser_odometry.launch.py laser_scan_topic:=/rpi_14/scan` |
+| 2 | **Missing `/odom` TF Frame** | Despite launching the odometry node, the `/odom` frame did not appear in the TF tree, which is essential for many localization and navigation stacks. | Added static transform:<br>`ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 odom base_link`<br>However, `/odom` still missing when verifying with `ros2 run tf2_tools view_frames`. |
+| 3 | **SLAM Frame Drift in RViz** | When executing SLAM through the `turtlebot4_navigation` stack, RViz showed growing drift between frames over time. This led to inconsistencies between the robot's estimated and actual positions, making localization unreliable. | The drift likely stems from the fact that /odom was derived entirely from LiDAR-based odometry without integration of wheel encoders or IMU data. A potential remedy is to apply filtering to the LiDAR measurements—removing spurious (“garbage”) data—to improve the accuracy of the /odom estimation. |
 
 ---
 
