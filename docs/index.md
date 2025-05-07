@@ -63,12 +63,10 @@ To build the system, we need to understand how communication between UR5 and Tur
 
 We will test under several different obstacle conditions to ensure that the robot are robust enough to handle variability. Several tests will be conducted to see if the robot works accurately. Comparing the sensor data and analog outputs to real-world conditions to ensure that our designed algorithms can accurately adapt to environmental changes.
 
----
-
-# Impact
+## Impact
 This project will enhance our understanding of multi-robot communication by coordinating the UR5 robotic arm and TurtleBot 4. Building an Rviz simulation will help us simulate and test the system. Developing our own user interface will improve interaction and control. Lastly, exploring different path-planning algorithms will deepen our knowledge of autonomous navigation.
 
-# Advising
+## Advising
 Dr. Aukes serves as our advisor for this project, providing technical guidance and hardware support. With his expertise in ROS2 development, robotic motion planning, and control systems, he plays a crucial role in helping us navigate the technical challenges of integrating the UR5 robotic arm and Turtlebot. Additionally, we plan to seek further technical guidance from other experts in the field to ensure the success of our project.
 
 ---
@@ -87,12 +85,18 @@ Dr. Aukes serves as our advisor for this project, providing technical guidance a
 
 <img src="./images/GUI.jpg" alt="GUI Interface" width="600" />
 
-### 3 Pre‑defined Actions
+### 3 RQT graph
+
+<img src="./images/rqt_graph.jpg" alt="rqt_graph" width="600">
+
+
+
+### 4 Pre‑defined Actions
 *We successfully enabled the TurtleBot to execute predefined actions. When button A is pressed, it moves forward 3 meters and then turns left for 1 meter; when button B is pressed, it moves forward 3 meters and then turns right for 1 meter.*
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AvNOWas0qkQ" title="Pre‑defined Actions" frameborder="0" allowfullscreen></iframe>
 
-### 4 Initial Path Planning (Nav2)
+### 5 Initial Path Planning (Nav2)
 Created an initial version of path planning within ttb_nav.py, incorporating obstacle detection and avoidance using ROS2's Nav2 framework.
 
 ---
