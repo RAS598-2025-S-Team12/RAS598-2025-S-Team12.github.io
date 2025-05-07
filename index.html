@@ -496,14 +496,57 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 <hr />
 <h1 id="code-breakdown">Code Breakdown</h1>
 <h2 id="gui-guipy">GUI (<code>gui.py</code>)</h2>
-<p>PyQt5 interface + ROS 2 node publishing TurtleBot state, velocity, and goals; plots IMU linear acceleration with a moving‑average filter.</p>
+<ol>
+<li>The <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/gui.py"><code>gui.py</code></a>, defines a TurtleBotGUI class that inherits from both rclpy.Node and QtWidgets.QMainWindow, integrating a PyQt5 interface with ROS2 communication.<br></li>
+<li>It creates publishers for <code>/turtlebot_state</code>, <code>/gui_cmd_vel</code>, and <code>/simple_goal</code>, and subscribers for <code>/default_vel</code>, <code>/c3_14/odom</code>, and <code>/c3_14/imu</code>, handling state, velocity commands, odometry, and IMU data.<br></li>
+<li>The GUI layout comprises a read-only logging panel, a Matplotlib canvas plotting raw and FIR-filtered linear acceleration over time, and text fields displaying current linear and angular velocities.<br></li>
+<li>Spin-box controls with Reset/Send buttons enable manual velocity entry, while large START/STOP and A/B/Origin buttons toggle operation and dispatch predefined navigation goals, each action logged with a timestamp.<br></li>
+<li>Callback methods (odom_callback, imu_callback) update velocity displays and append IMU samples to a rolling buffer; update_plot applies a moving-average filter to the latest N samples before redrawing the acceleration graph.<br></li>
+</ol>
 <h2 id="ur5-control-nodes">UR5 Control Nodes</h2>
-<ul>
-<li><code>move_to_position.py</code> → Joint &amp; Cartesian trajectories.  </li>
-<li><code>get_position.py</code> → Joint/pose feedback.</li>
-</ul>
+<ol>
+<li>The ROS2 nodes, implemented in Python, include:<br></li>
+<li><a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/move_to_position.py"><code>move_to_position.py</code></a>: sends trajectory commands to control robot motion.<br></li>
+<li><a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_control/ur5_control/get_position.py"><code>get_position.py</code></a>: subscribes and monitors robot joint states and end-effector poses.<br></li>
+<li>Publishers and subscribers involved:<br></li>
+<li>Publishes JointTrajectory messages to <code>/scaled_joint_trajectory_controller/joint_trajectory</code>.<br></li>
+<li>Subscribes to <code>/joint_states for joint angles</code>.<br></li>
+<li>Subscribes to <code>/tcp_pose_broadcaster/pose</code> for end-effector position feedback.<br></li>
+<li>Motion strategy:<br></li>
+<li>Vertical pick-and-place movements utilize linear trajectory commands (moveL) for precision.<br></li>
+<li>Horizontal movements employ joint-space trajectory commands (moveJ) for efficient operation.<br></li>
+<li>Feedback system:<br></li>
+<li>Continuously monitors joint angles and end-effector positions.<br></li>
+<li>Ensures closed-loop accuracy for task execution.<br></li>
+</ol>
 <h2 id="ursim-physical-robot">URSim &amp; Physical Robot</h2>
-<p>Validated control nodes in URSim; hardware constraints handled with Dashboard API and a URP script (<code>load_and_run_script.py</code>).</p>
+<ol>
+<li>Validation environment:<br></li>
+<li>Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.<br></li>
+</ol>
+<iframe width="560" height="315" src="https://youtu.be/uVdeHsFNLeA?si=AKTBPaIzsqCfSYYi" title="UR5 Robotic Arm Demo" frameborder="0" allowfullscreen></iframe>
+
+<ol>
+<li>Physical hardware constraints:<br></li>
+<li>
+<p>Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.<br></p>
+</li>
+<li>
+<p>Alternative solution implemented:<br></p>
+</li>
+<li>URP control script (ur5_control.urp) pre-developed.<br></li>
+<li>Python script <a href="https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/ur5_programs/load_and_run_script.py"><code>load_and_run_script.py</code></a> communicates with robot via Dashboard server.<br></li>
+</ol>
+<iframe width="560" height="315" src="https://youtu.be/_y8J7vZQI5s?si=e9wmHlcn-AyNhpha" title="UR5 Robotic Arm Demo" frameborder="0" allowfullscreen></iframe>
+
+<ol>
+<li>Python script functionality:<br></li>
+<li>Establishes TCP socket connection to robot Dashboard server.<br></li>
+<li>Loads and executes predefined URP program.<br></li>
+<li>Enables coordinated robotic arm and gripper actions.<br></li>
+</ol>
+<iframe width="560" height="315" src="https://youtube.com/shorts/RPhDaaa79vg?si=vqItqi5s8UgqYqGq" title="UR5 Robotic Arm Demo" frameborder="0" allowfullscreen></iframe>
+
 <h2 id="turtlebot-state-machine-turtlebot_statepy">TurtleBot State Machine (<code>turtlebot_state.py</code>)</h2>
 <p>Publishes <code>/turtlebot_state</code>; detects arrival by monitoring zero velocity.</p>
 <h2 id="navigation-state-machine-ttb_navpy">Navigation State Machine (<code>ttb_nav.py</code>)</h2>
