@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://embedded-systems-design.github.io/template_report/Gallery/</loc>
+         <lastmod>2025-05-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://embedded-systems-design.github.io/template_report/charts/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
