@@ -132,9 +132,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
 4. System Integration and Validation
 
-<div align="center">
-  <img src="./images/rqt_graph.jpg" alt="rqt_graph" width="600">
-</div>
+---
 
 #### Code Breakdown
 1. GUI:
@@ -231,9 +229,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
     (resetting the tag on rejection and chaining `result_cb`), and `result_cb` logs success, cancellation or failure, then clears 
     `current_goal_tag` so new goals can be sent.
 
-<div align="center">
-  <img src="./images/rqt_graph.jpg" alt="rqt_graph" width="600">
-</div>
+---
 
 #### Unresolved Tasks
 
