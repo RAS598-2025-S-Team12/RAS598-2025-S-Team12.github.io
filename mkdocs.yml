@@ -17,7 +17,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - toc.follow    
-    - toc.integrate
+#    - toc.integrate
     - navigation.top
     - navigation.path
     - navigation.indexes
@@ -32,6 +32,8 @@ markdown_extensions:
   - attr_list #add attributes using curly brackets to images, see https://squidfunk.github.io/mkdocs-material/reference/images/
   - md_in_html # see https://squidfunk.github.io/mkdocs-material/reference/images/
   - footnotes
+  - toc:
+      permalink: true
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.tilde: {}
