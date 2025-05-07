@@ -175,6 +175,16 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
 
     a) Validation environment:
         Official Universal Robots ursim_e-series simulation software validates the ROS2 node performance.
+        <div align="center">
+        
+        <iframe width="560" height="315"
+                src="https://youtu.be/uVdeHsFNLeA?si=AKTBPaIzsqCfSYYi"
+                title="UR5 Robotic Arm Demo" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+        </iframe>
+        
+        </div>
 
     b) Physical hardware constraints:
         Simultaneous ROS2 operation of robot and gripper not feasible due to hardware limitations.
@@ -187,8 +197,18 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
         Establishes TCP socket connection to robot Dashboard server.
         Loads and executes predefined URP program.
         Enables coordinated robotic arm and gripper actions.
+        <div align="center">
+        
+        <iframe width="560" height="315"
+                src="https://youtube.com/shorts/sF3xCx-4woE?si=fbdRCPHTF5H-K7mB"
+                title="UR5 Robotic Arm Demo" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+        </iframe>
+        
+        </div>
  
-4. Turtlebot State Machine
+5. Turtlebot State Machine
 
     a) The [`turtlebot_state.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/turtlebot_state.py) defines a TurtleBotState class 
     that inherits from rclpy.Node, containing 
@@ -207,7 +227,7 @@ Add RViz visualization to support real-time monitoring and build a digital twin 
     e) Every second, check_arrival_condition checks if the robot has held zero velocity for more than 3 seconds during an action—if so, it 
     publishes either “Arrived at A” or “Arrived at B” and then clears the action state.
    
-5. Turtlebot Navigation
+6. Turtlebot Navigation
 
     a) The [`ttb_nav.py`](https://github.com/RAS598-2025-S-Team12/RAS598-2025-S-Team12.github.io/blob/main/src/t12_prj/t12_prj/ttb_nav.py) 
     defines a TtbNav class that inherits from rclpy.Node, implementing a navigation state machine which listens to `/turtlebot_state` 
